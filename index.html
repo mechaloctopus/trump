@@ -2240,6 +2240,7 @@
       if(!grid) return;
 
       var internalHashChange = false;
+      var allowHashUpdates = false;
 
       function norm(s){
         return String(s || '').trim().toLowerCase();
@@ -2356,8 +2357,10 @@
             lede.textContent = details.open ? lede.dataset.full : lede.dataset.short;
           }
           if(details.open){
-            internalHashChange = true;
-            location.hash = id;
+            if(allowHashUpdates){
+              internalHashChange = true;
+              location.hash = id;
+            }
           }else{
             var hashId = decodeURIComponent(String(location.hash || '').replace(/^#/,''));
             if(hashId === id){
@@ -2457,6 +2460,7 @@
       rebuild();
       wireImageFallback(document);
       syncFromHash();
+      setTimeout(function(){ allowHashUpdates = true; }, 0);
     })();
   </script>
 
