@@ -1,4 +1,3 @@
-```html
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>“It Doesn’t Help That…” – A Sourced Compilation of Trump/Epstein-Adjacent Associations &amp; Controversies</title>
   <meta name="description" content="A neutral, sourced compilation of publicly discussed claims, allegations, and observations; not a conclusion of guilt or innocence." />
+
   <style>
     :root{
       --bg:#0b0e14;
@@ -19,12 +19,17 @@
       --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
       --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     }
+
+    *{ box-sizing:border-box; }
     html,body{margin:0;padding:0;background:linear-gradient(180deg,#070a10, var(--bg) 30%, #070a10);color:var(--ink);font-family:var(--sans);}
+
     a{color:var(--accent);text-decoration:none}
     a:hover{text-decoration:underline}
+
     header{max-width:var(--maxw);margin:0 auto;padding:46px 18px 18px}
     h1{margin:0 0 10px;font-size:clamp(26px,3vw,40px);letter-spacing:.2px}
     .sub{margin:0;color:var(--muted);max-width:95ch;line-height:1.65}
+
     main{max-width:var(--maxw);margin:0 auto;padding:18px}
     .notice{
       border:1px solid rgba(255,211,124,.25);
@@ -33,31 +38,28 @@
       margin-bottom:16px;
     }
     .notice b{color:var(--warn);font-weight:700}
+
     .grid{display:grid;gap:14px}
+
     section.card{
       border:1px solid var(--line);
       background:rgba(16,23,38,.75);
       border-radius:16px;
       padding:16px;
       box-shadow:0 8px 30px rgba(0,0,0,.28);
+      overflow:hidden; /* prevents any child overflow from covering other content */
     }
+
     h2{margin:0 0 8px;font-size:20px}
     p{margin:10px 0;line-height:1.7}
     ul{margin:8px 0 0;padding-left:18px}
     li{margin:8px 0;color:var(--muted);line-height:1.6}
+
     .sources-title{
       margin-top:12px;padding-top:12px;border-top:1px solid var(--line);
       font-size:13px;letter-spacing:.6px;text-transform:uppercase;color:var(--muted)
     }
-    figure{
-      margin:14px 0 10px;
-      border:1px solid var(--line);
-      border-radius:14px;
-      overflow:hidden;
-      background:rgba(0,0,0,.15);
-    }
-    figure img{display:block;width:100%;height:auto}
-    figcaption{padding:10px 12px;color:var(--muted);font-size:13px;line-height:1.5}
+
     .tag{
       display:inline-block;
       font-size:12px;
@@ -70,8 +72,42 @@
       border-radius:999px;
       margin:0 8px 8px 0;
     }
+
+    /* --- Critical layout fix: images live in their own block, never overlap text --- */
+    .media{ margin:14px 0 10px; }
+    figure{
+      margin:0; /* prevent margin collapse weirdness inside cards */
+      border:1px solid var(--line);
+      border-radius:14px;
+      overflow:hidden;
+      background:rgba(0,0,0,.15);
+    }
+
+    /* Keeps huge images from taking over the card; still responsive */
+    figure img{
+      display:block;
+      width:100%;
+      height:auto;
+      max-height:520px;        /* prevents “covering” by sheer height */
+      object-fit:contain;      /* never crops; keeps aspect */
+      background:rgba(0,0,0,.12);
+    }
+
+    figcaption{
+      padding:10px 12px;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.5;
+      border-top:1px solid var(--line);
+    }
+
     footer{max-width:var(--maxw);margin:0 auto;padding:22px 18px 50px;color:var(--muted)}
     code{font-family:var(--mono);font-size:.95em}
+
+    /* Optional: reduce max image height on small screens */
+    @media (max-width: 560px){
+      figure img{ max-height:380px; }
+    }
   </style>
 </head>
 
@@ -103,10 +139,12 @@
         <span class="tag">Epstein</span>
         <h2>Trump’s Social Circle with Jeffrey Epstein</h2>
 
-        <figure>
-          <img src="photo1.png" alt="Photo 1 related to Trump/Epstein context" />
-          <figcaption>Image slot: <code>photo1.png</code> (replace with your intended image for this section)</figcaption>
-        </figure>
+        <div class="media">
+          <figure>
+            <img src="photo1.png" alt="Photo 1 related to Trump/Epstein context" loading="lazy" />
+            <figcaption>Image slot: <code>photo1.png</code> (replace with your intended image for this section)</figcaption>
+          </figure>
+        </div>
 
         <p>
           Donald Trump had a social and professional relationship with financier Jeffrey Epstein, a convicted sex offender,
@@ -136,10 +174,12 @@
         <span class="tag">Mar-a-Lago</span>
         <h2>Epstein at Mar-a-Lago and Reported Recruitment of a Minor</h2>
 
-        <figure>
-          <img src="photo2.png" alt="Photo 2 related to Mar-a-Lago / recruitment discussion" />
-          <figcaption>Image slot: <code>photo2.png</code></figcaption>
-        </figure>
+        <div class="media">
+          <figure>
+            <img src="photo2.png" alt="Photo 2 related to Mar-a-Lago / recruitment discussion" loading="lazy" />
+            <figcaption>Image slot: <code>photo2.png</code></figcaption>
+          </figure>
+        </div>
 
         <p>
           Jeffrey Epstein was a member of Trump’s Palm Beach club, Mar-a-Lago, for many years. One of Epstein’s most prominent victims,
@@ -165,10 +205,12 @@
         <span class="tag">DOJ</span>
         <h2>Alexander Acosta’s Epstein Plea Deal and Trump’s Administration</h2>
 
-        <figure>
-          <img src="photo11.png" alt="Photo 11 related to Alexander Acosta / Epstein plea deal" />
-          <figcaption>Image slot: <code>photo11.png</code> (optional)</figcaption>
-        </figure>
+        <div class="media">
+          <figure>
+            <img src="photo11.png" alt="Photo 11 related to Alexander Acosta / Epstein plea deal" loading="lazy" />
+            <figcaption>Image slot: <code>photo11.png</code> (optional)</figcaption>
+          </figure>
+        </div>
 
         <p>
           One of the most controversial links between Trump’s orbit and Epstein was through Alexander Acosta, whom Trump appointed as U.S. Labor
@@ -188,10 +230,12 @@
         <span class="tag">Maxwell</span>
         <h2>Trump’s Remarks about Ghislaine Maxwell</h2>
 
-        <figure>
-          <img src="photo12.png" alt="Photo 12 related to Trump remarks about Maxwell" />
-          <figcaption>Image slot: <code>photo12.png</code> (optional)</figcaption>
-        </figure>
+        <div class="media">
+          <figure>
+            <img src="photo12.png" alt="Photo 12 related to Trump remarks about Maxwell" loading="lazy" />
+            <figcaption>Image slot: <code>photo12.png</code> (optional)</figcaption>
+          </figure>
+        </div>
 
         <p>
           In July 2020, after Ghislaine Maxwell was arrested on federal charges related to procuring and trafficking minors for Epstein,
@@ -210,10 +254,12 @@
         <span class="tag">Fixers</span>
         <h2>Roy Cohn and Allegations of Sexual Blackmail</h2>
 
-        <figure>
-          <img src="photo3.png" alt="Photo 3 related to Roy Cohn excerpt" />
-          <figcaption>Image slot: <code>photo3.png</code></figcaption>
-        </figure>
+        <div class="media">
+          <figure>
+            <img src="photo3.png" alt="Photo 3 related to Roy Cohn excerpt" loading="lazy" />
+            <figcaption>Image slot: <code>photo3.png</code></figcaption>
+          </figure>
+        </div>
 
         <p>
           Donald Trump’s first legal mentor and fixer was Roy Cohn. Long after Cohn’s death, allegations circulated that he was involved
@@ -232,10 +278,12 @@
         <span class="tag">Endorsements</span>
         <h2>Endorsement of Roy Moore Despite Teen Misconduct Allegations</h2>
 
-        <figure>
-          <img src="photo13.png" alt="Photo 13 related to Roy Moore endorsement coverage" />
-          <figcaption>Image slot: <code>photo13.png</code> (optional)</figcaption>
-        </figure>
+        <div class="media">
+          <figure>
+            <img src="photo13.png" alt="Photo 13 related to Roy Moore endorsement coverage" loading="lazy" />
+            <figcaption>Image slot: <code>photo13.png</code> (optional)</figcaption>
+          </figure>
+        </div>
 
         <p>
           In late 2017, Trump publicly endorsed Roy Moore in the Alabama special Senate election despite multiple allegations of sexual misconduct
@@ -253,10 +301,12 @@
         <span class="tag">Campaign</span>
         <h2>Trump Campaign Chair Convicted of Child Sex Trafficking</h2>
 
-        <figure>
-          <img src="photo14.png" alt="Photo 14 related to Timothy Nolan coverage" />
-          <figcaption>Image slot: <code>photo14.png</code> (optional)</figcaption>
-        </figure>
+        <div class="media">
+          <figure>
+            <img src="photo14.png" alt="Photo 14 related to Timothy Nolan coverage" loading="lazy" />
+            <figcaption>Image slot: <code>photo14.png</code> (optional)</figcaption>
+          </figure>
+        </div>
 
         <p>
           Timothy Nolan, a Kentucky politician who served as a Trump campaign county chair, pleaded guilty to multiple charges including
@@ -275,10 +325,12 @@
         <span class="tag">Advisers</span>
         <h2>Trump’s Spiritual Adviser Indicted in Child Sex Abuse Case</h2>
 
-        <figure>
-          <img src="photo4.png" alt="Photo 4 related to Newsweek screenshot" />
-          <figcaption>Image slot: <code>photo4.png</code></figcaption>
-        </figure>
+        <div class="media">
+          <figure>
+            <img src="photo4.png" alt="Photo 4 related to Newsweek screenshot" loading="lazy" />
+            <figcaption>Image slot: <code>photo4.png</code></figcaption>
+          </figure>
+        </div>
 
         <p>
           Reporting has described Pastor Robert Morris as part of Trump’s broader evangelical adviser ecosystem, and in 2025 he was indicted
@@ -295,10 +347,12 @@
         <span class="tag">Associations</span>
         <h2>Mark Foley’s Friendship with Trump</h2>
 
-        <figure>
-          <img src="photo5.png" alt="Photo 5 related to Mark Foley screenshot" />
-          <figcaption>Image slot: <code>photo5.png</code></figcaption>
-        </figure>
+        <div class="media">
+          <figure>
+            <img src="photo5.png" alt="Photo 5 related to Mark Foley screenshot" loading="lazy" />
+            <figcaption>Image slot: <code>photo5.png</code></figcaption>
+          </figure>
+        </div>
 
         <p>
           Former Congressman Mark Foley resigned in 2006 after sending sexually explicit messages to underage pages.
@@ -316,10 +370,12 @@
         <span class="tag">Image</span>
         <h2>Melania Trump’s Modeling Past</h2>
 
-        <figure>
-          <img src="photo6.png" alt="Photo 6 related to Melania modeling cover" />
-          <figcaption>Image slot: <code>photo6.png</code></figcaption>
-        </figure>
+        <div class="media">
+          <figure>
+            <img src="photo6.png" alt="Photo 6 related to Melania modeling cover" loading="lazy" />
+            <figcaption>Image slot: <code>photo6.png</code></figcaption>
+          </figure>
+        </div>
 
         <p>
           Melania Trump’s modeling history included provocative published work that resurfaced during the 2016 campaign.
@@ -336,10 +392,12 @@
         <span class="tag">Family history</span>
         <h2>Trump Family History: Grandfather’s Brothel Business</h2>
 
-        <figure>
-          <img src="photo7.png" alt="Photo 7 related to book excerpt about Frederick Trump" />
-          <figcaption>Image slot: <code>photo7.png</code></figcaption>
-        </figure>
+        <div class="media">
+          <figure>
+            <img src="photo7.png" alt="Photo 7 related to book excerpt about Frederick Trump" loading="lazy" />
+            <figcaption>Image slot: <code>photo7.png</code></figcaption>
+          </figure>
+        </div>
 
         <p>
           Historical reporting describes Donald Trump’s grandfather Frederick Trump operating a Gold Rush-era establishment
@@ -358,18 +416,26 @@
         <h2>Image placeholders (photo8–photo10)</h2>
         <p>Reserved slots so your remaining uploaded images can render cleanly once you add them.</p>
 
-        <figure>
-          <img src="photo8.png" alt="Photo 8" />
-          <figcaption>Image slot: <code>photo8.png</code></figcaption>
-        </figure>
-        <figure>
-          <img src="photo9.png" alt="Photo 9" />
-          <figcaption>Image slot: <code>photo9.png</code></figcaption>
-        </figure>
-        <figure>
-          <img src="photo10.png" alt="Photo 10" />
-          <figcaption>Image slot: <code>photo10.png</code></figcaption>
-        </figure>
+        <div class="media">
+          <figure>
+            <img src="photo8.png" alt="Photo 8" loading="lazy" />
+            <figcaption>Image slot: <code>photo8.png</code></figcaption>
+          </figure>
+        </div>
+
+        <div class="media">
+          <figure>
+            <img src="photo9.png" alt="Photo 9" loading="lazy" />
+            <figcaption>Image slot: <code>photo9.png</code></figcaption>
+          </figure>
+        </div>
+
+        <div class="media">
+          <figure>
+            <img src="photo10.png" alt="Photo 10" loading="lazy" />
+            <figcaption>Image slot: <code>photo10.png</code></figcaption>
+          </figure>
+        </div>
       </section>
 
       <!-- =========================
@@ -380,10 +446,12 @@
         <span class="tag">It doesn’t help</span>
         <h2>It doesn’t help: Trump’s closeness with Kid Rock (and those lyrics)</h2>
 
-        <figure>
-          <img src="photo15.png" alt="Photo 15 related to Trump/Kid Rock context" />
-          <figcaption>Image slot: <code>photo15.png</code> (optional)</figcaption>
-        </figure>
+        <div class="media">
+          <figure>
+            <img src="photo15.png" alt="Photo 15 related to Trump/Kid Rock context" loading="lazy" />
+            <figcaption>Image slot: <code>photo15.png</code> (optional)</figcaption>
+          </figure>
+        </div>
 
         <p>
           It doesn’t help that Trump counts rock musician Kid Rock among his friends and has praised him publicly.
@@ -404,10 +472,12 @@
         <span class="tag">It doesn’t help</span>
         <h2>It doesn’t help: Pageant ties with John Casablancas and teen models</h2>
 
-        <figure>
-          <img src="photo16.png" alt="Photo 16 related to Casablancas / Look of the Year context" />
-          <figcaption>Image slot: <code>photo16.png</code> (optional)</figcaption>
-        </figure>
+        <div class="media">
+          <figure>
+            <img src="photo16.png" alt="Photo 16 related to Casablancas / Look of the Year context" loading="lazy" />
+            <figcaption>Image slot: <code>photo16.png</code> (optional)</figcaption>
+          </figure>
+        </div>
 
         <p>
           It doesn’t help that Trump partnered with John Casablancas—the Elite Model Management founder later accused of exploiting underage models—
@@ -427,10 +497,12 @@
         <span class="tag">It doesn’t help</span>
         <h2>It doesn’t help: Roy Cohn’s disbarment and blackmail lore</h2>
 
-        <figure>
-          <img src="photo17.png" alt="Photo 17 related to Roy Cohn disbarment / excerpt" />
-          <figcaption>Image slot: <code>photo17.png</code> (optional)</figcaption>
-        </figure>
+        <div class="media">
+          <figure>
+            <img src="photo17.png" alt="Photo 17 related to Roy Cohn disbarment / excerpt" loading="lazy" />
+            <figcaption>Image slot: <code>photo17.png</code> (optional)</figcaption>
+          </figure>
+        </div>
 
         <p>
           It doesn’t help that Trump’s early mentor Roy Cohn was disbarred for unethical conduct, and that Cohn has long been surrounded by allegations
@@ -451,10 +523,12 @@
         <span class="tag">It doesn’t help</span>
         <h2>It doesn’t help: Giuliani / Michael Aquino / Presidio claims (not verified)</h2>
 
-        <figure>
-          <img src="photo18.png" alt="Photo 18 related to Giuliani/Aquino/Presidio claim context" />
-          <figcaption>Image slot: <code>photo18.png</code> (optional)</figcaption>
-        </figure>
+        <div class="media">
+          <figure>
+            <img src="photo18.png" alt="Photo 18 related to Giuliani/Aquino/Presidio claim context" loading="lazy" />
+            <figcaption>Image slot: <code>photo18.png</code> (optional)</figcaption>
+          </figure>
+        </div>
 
         <p>
           It doesn’t help that Trump’s longtime ally Rudy Giuliani is sometimes pulled into rumors about the Presidio daycare scandal
@@ -474,10 +548,12 @@
         <span class="tag">It doesn’t help</span>
         <h2>It doesn’t help: “Ambrosia,” blood-transfusion culture, and Epstein-adjacent weirdness</h2>
 
-        <figure>
-          <img src="photo19.png" alt="Photo 19 related to Ambrosia / blood transfusion context" />
-          <figcaption>Image slot: <code>photo19.png</code> (optional)</figcaption>
-        </figure>
+        <div class="media">
+          <figure>
+            <img src="photo19.png" alt="Photo 19 related to Ambrosia / blood transfusion context" loading="lazy" />
+            <figcaption>Image slot: <code>photo19.png</code> (optional)</figcaption>
+          </figure>
+        </div>
 
         <p>
           It doesn’t help that J.D. Vance is discussed in the same online orbit as Peter Thiel’s interest in a company called Ambrosia, known for marketing
@@ -496,10 +572,12 @@
         <span class="tag">It doesn’t help</span>
         <h2>It doesn’t help: “Staff transfer” optics and institutional crossover</h2>
 
-        <figure>
-          <img src="photo20.png" alt="Photo 20 related to staff crossover optics" />
-          <figcaption>Image slot: <code>photo20.png</code> (optional)</figcaption>
-        </figure>
+        <div class="media">
+          <figure>
+            <img src="photo20.png" alt="Photo 20 related to staff crossover optics" loading="lazy" />
+            <figcaption>Image slot: <code>photo20.png</code> (optional)</figcaption>
+          </figure>
+        </div>
 
         <p>
           It doesn’t help that critics point to institutional crossover between Epstein-linked decision-makers and Trump’s administration or orbit,
@@ -518,10 +596,12 @@
         <span class="tag">It doesn’t help</span>
         <h2>It doesn’t help: “The Devil’s Advocate” filmed in Trump’s penthouse</h2>
 
-        <figure>
-          <img src="photo21.png" alt="Photo 21 related to The Devil’s Advocate / Trump Tower filming context" />
-          <figcaption>Image slot: <code>photo21.png</code> (optional)</figcaption>
-        </figure>
+        <div class="media">
+          <figure>
+            <img src="photo21.png" alt="Photo 21 related to The Devil’s Advocate / Trump Tower filming context" loading="lazy" />
+            <figcaption>Image slot: <code>photo21.png</code> (optional)</figcaption>
+          </figure>
+        </div>
 
         <p>
           It doesn’t help that pop culture leaned into the symbolism: the film <em>The Devil’s Advocate</em> used Trump’s own penthouse for scenes tied to
@@ -541,10 +621,12 @@
         <span class="tag">It doesn’t help</span>
         <h2>It doesn’t help: Trump’s comments about Ivanka</h2>
 
-        <figure>
-          <img src="photo22.png" alt="Photo 22 related to Trump/Ivanka quote context" />
-          <figcaption>Image slot: <code>photo22.png</code> (optional)</figcaption>
-        </figure>
+        <div class="media">
+          <figure>
+            <img src="photo22.png" alt="Photo 22 related to Trump/Ivanka quote context" loading="lazy" />
+            <figcaption>Image slot: <code>photo22.png</code> (optional)</figcaption>
+          </figure>
+        </div>
 
         <p>
           It doesn’t help that Trump has repeatedly made remarks about his daughter Ivanka that many people interpret as sexualizing or objectifying.
@@ -564,10 +646,12 @@
         <span class="tag">It doesn’t help</span>
         <h2>It doesn’t help: TPUSA-adjacent rumors (Erika Kirk Romania claim was debunked)</h2>
 
-        <figure>
-          <img src="photo23.png" alt="Photo 23 related to Erika Kirk rumor coverage" />
-          <figcaption>Image slot: <code>photo23.png</code> (optional)</figcaption>
-        </figure>
+        <div class="media">
+          <figure>
+            <img src="photo23.png" alt="Photo 23 related to Erika Kirk rumor coverage" loading="lazy" />
+            <figcaption>Image slot: <code>photo23.png</code> (optional)</figcaption>
+          </figure>
+        </div>
 
         <p>
           It doesn’t help that viral claims spread tying Erika Kirk (connected to Turning Point USA) to a Romanian child-kidnapping story.
@@ -587,10 +671,12 @@
         <span class="tag">It doesn’t help</span>
         <h2>It doesn’t help: Steve Bannon controversies and Epstein contact claims</h2>
 
-        <figure>
-          <img src="photo24.png" alt="Photo 24 related to Steve Bannon coverage" />
-          <figcaption>Image slot: <code>photo24.png</code> (optional)</figcaption>
-        </figure>
+        <div class="media">
+          <figure>
+            <img src="photo24.png" alt="Photo 24 related to Steve Bannon coverage" loading="lazy" />
+            <figcaption>Image slot: <code>photo24.png</code> (optional)</figcaption>
+          </figure>
+        </div>
 
         <p>
           It doesn’t help that Steve Bannon—one of Trump’s key political operators—has been linked in reporting to bizarre and disturbing scandal narratives,
@@ -611,10 +697,12 @@
         <span class="tag">It doesn’t help</span>
         <h2>It doesn’t help: The Atlantic City casino bankruptcies</h2>
 
-        <figure>
-          <img src="photo25.png" alt="Photo 25 related to Trump casino bankruptcies" />
-          <figcaption>Image slot: <code>photo25.png</code> (optional)</figcaption>
-        </figure>
+        <div class="media">
+          <figure>
+            <img src="photo25.png" alt="Photo 25 related to Trump casino bankruptcies" loading="lazy" />
+            <figcaption>Image slot: <code>photo25.png</code> (optional)</figcaption>
+          </figure>
+        </div>
 
         <p>
           It doesn’t help that Trump built a casino empire in Atlantic City and then watched multiple properties go through bankruptcy.
@@ -634,10 +722,12 @@
         <span class="tag">It doesn’t help</span>
         <h2>It doesn’t help: Trump University and crypto controversies</h2>
 
-        <figure>
-          <img src="photo26.png" alt="Photo 26 related to Trump University / crypto coverage" />
-          <figcaption>Image slot: <code>photo26.png</code> (optional)</figcaption>
-        </figure>
+        <div class="media">
+          <figure>
+            <img src="photo26.png" alt="Photo 26 related to Trump University / crypto coverage" loading="lazy" />
+            <figcaption>Image slot: <code>photo26.png</code> (optional)</figcaption>
+          </figure>
+        </div>
 
         <p>
           It doesn’t help that Trump University ended in a major settlement after fraud allegations, and it doesn’t help that critics argue
@@ -657,10 +747,12 @@
         <span class="tag">It doesn’t help</span>
         <h2>It doesn’t help: Tabloids, pageants, and “catch-and-kill” politics</h2>
 
-        <figure>
-          <img src="photo27.png" alt="Photo 27 related to tabloid / catch-and-kill context" />
-          <figcaption>Image slot: <code>photo27.png</code> (optional)</figcaption>
-        </figure>
+        <div class="media">
+          <figure>
+            <img src="photo27.png" alt="Photo 27 related to tabloid / catch-and-kill context" loading="lazy" />
+            <figcaption>Image slot: <code>photo27.png</code> (optional)</figcaption>
+          </figure>
+        </div>
 
         <p>
           It doesn’t help that Trump’s brand was built in a tabloid ecosystem, and it doesn’t help that “catch-and-kill” reporting emerged showing
@@ -681,10 +773,12 @@
         <span class="tag">It doesn’t help</span>
         <h2>It doesn’t help: E. Jean Carroll, and the broader allegations landscape</h2>
 
-        <figure>
-          <img src="photo28.png" alt="Photo 28 related to E. Jean Carroll / court coverage" />
-          <figcaption>Image slot: <code>photo28.png</code> (optional)</figcaption>
-        </figure>
+        <div class="media">
+          <figure>
+            <img src="photo28.png" alt="Photo 28 related to E. Jean Carroll / court coverage" loading="lazy" />
+            <figcaption>Image slot: <code>photo28.png</code> (optional)</figcaption>
+          </figure>
+        </div>
 
         <p>
           It doesn’t help that a jury found Trump liable in E. Jean Carroll’s civil case (sexual abuse and defamation),
@@ -704,10 +798,12 @@
         <span class="tag">It doesn’t help</span>
         <h2>It doesn’t help: The Dusti Rhea Duke story in the “Epstein files” discourse</h2>
 
-        <figure>
-          <img src="photo29.png" alt="Photo 29 related to Dusti Rhea Duke allegation coverage" />
-          <figcaption>Image slot: <code>photo29.png</code> (optional)</figcaption>
-        </figure>
+        <div class="media">
+          <figure>
+            <img src="photo29.png" alt="Photo 29 related to Dusti Rhea Duke allegation coverage" loading="lazy" />
+            <figcaption>Image slot: <code>photo29.png</code> (optional)</figcaption>
+          </figure>
+        </div>
 
         <p>
           It doesn’t help that an FBI tip narrative circulated alleging a minor was assaulted by both Trump and Epstein, and that the same narrative
@@ -728,10 +824,12 @@
         <span class="tag">It doesn’t help</span>
         <h2>It doesn’t help: A repeated pattern of “fixers” and damage-control operators</h2>
 
-        <figure>
-          <img src="photo30.png" alt="Photo 30 related to fixers (Cohn/Stone/Cohen etc.)" />
-          <figcaption>Image slot: <code>photo30.png</code> (optional)</figcaption>
-        </figure>
+        <div class="media">
+          <figure>
+            <img src="photo30.png" alt="Photo 30 related to fixers (Cohn/Stone/Cohen etc.)" loading="lazy" />
+            <figcaption>Image slot: <code>photo30.png</code> (optional)</figcaption>
+          </figure>
+        </div>
 
         <p>
           It doesn’t help that Trump repeatedly relied on “fixer” archetypes—Roy Cohn early on, later figures like Roger Stone and Michael Cohen,
@@ -755,10 +853,12 @@
         <span class="tag">Invitation</span>
         <h2>Conclusion: Context, Not Conviction — and an Invitation to Clarify</h2>
 
-        <figure>
-          <img src="photo31.png" alt="Photo 31 for conclusion / summary visual" />
-          <figcaption>Image slot: <code>photo31.png</code> (optional)</figcaption>
-        </figure>
+        <div class="media">
+          <figure>
+            <img src="photo31.png" alt="Photo 31 for conclusion / summary visual" loading="lazy" />
+            <figcaption>Image slot: <code>photo31.png</code> (optional)</figcaption>
+          </figure>
+        </div>
 
         <p>
           The purpose of this compilation is not to declare guilt or innocence, but to lay out reported facts, allegations, and associations that critics argue
@@ -788,4 +888,3 @@
   </footer>
 </body>
 </html>
-```
