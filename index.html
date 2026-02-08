@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Trump Associations Dossier — Sourced Context &amp; Reporting</title>
   <meta name="description" content="A sourced dossier of publicly reported facts, allegations, and associations for reader review; not a verdict of guilt or innocence." />
+  <link rel="icon" href="trump-icon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="trump-icon.png" />
 
   <style>
     :root{
@@ -46,6 +48,10 @@
     a:hover{text-decoration:underline}
 
     header{max-width:var(--maxw);margin:0 auto;padding:40px 18px 14px}
+    .header-row{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+    .header-text{min-width:0}
+    .header-icons{display:flex;align-items:flex-start;gap:10px;flex:0 0 auto}
+    .header-icons img{display:block;width:54px;height:auto;border-radius:14px;border:1px solid rgba(255,255,255,.12);background:rgba(0,0,0,.18);box-shadow:0 8px 24px rgba(0,0,0,.20)}
     h1{margin:0 0 10px;font-size:clamp(26px,3vw,40px);letter-spacing:.2px}
     .sub{margin:0;color:var(--muted);max-width:95ch;line-height:1.65}
 
@@ -242,6 +248,7 @@
     @media (max-width: 560px){
       figure img{ max-height:240px; }
       article.case .media{grid-template-columns:repeat(auto-fit, minmax(140px, 1fr));}
+      .header-icons img{width:44px;border-radius:12px}
     }
 
     @media (max-width: 980px){
@@ -256,13 +263,22 @@
 
 <body>
   <header id="top">
-    <h1>Trump Associations Dossier — Sourced Context &amp; Reporting</h1>
-    <p class="sub">
-      This is a sourced dossier of publicly reported facts, allegations, and associations concerning <b>current U.S. President Donald J. Trump</b>
-      and the networks around him. Each entry links to reporting, court coverage, or primary/public records where available.
-      This page is <b>not</b> a verdict; it is a structured collection of context that many readers consider relevant when assessing whether Trump’s
-      long-running relationships and institutional touchpoints suggest complicity, tolerance, or enabling behavior.
-    </p>
+    <div class="header-row">
+      <div class="header-text">
+        <h1>Trump Associations Dossier — Sourced Context &amp; Reporting</h1>
+        <p class="sub">
+          This is a sourced dossier of publicly reported facts, allegations, and associations concerning <b>current U.S. President Donald J. Trump</b>
+          and the networks around him. Each entry links to reporting, court coverage, or primary/public records where available.
+          This page is <b>not</b> a verdict; it is a structured collection of context that many readers consider relevant when assessing whether Trump’s
+          long-running relationships and institutional touchpoints suggest complicity, tolerance, or enabling behavior.
+        </p>
+      </div>
+
+      <div class="header-icons" aria-label="Header icons">
+        <img src="gavel.gif" alt="Gavel" loading="eager" />
+        <img src="court_seal.png" alt="Court seal" loading="eager" />
+      </div>
+    </div>
   </header>
 
   <main>
