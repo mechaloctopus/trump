@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>“It Doesn’t Help That…” – A Sourced Compilation of Trump/Epstein-Adjacent Associations &amp; Controversies</title>
-  <meta name="description" content="A neutral, sourced compilation of publicly discussed claims, allegations, and observations; not a conclusion of guilt or innocence." />
+  <title>Trump Associations Dossier — Sourced Context &amp; Reporting</title>
+  <meta name="description" content="A sourced dossier of publicly reported facts, allegations, and associations for reader review; not a verdict of guilt or innocence." />
 
   <style>
     :root{
@@ -39,73 +39,6 @@
     h1{margin:0 0 10px;font-size:clamp(26px,3vw,40px);letter-spacing:.2px}
     .sub{margin:0;color:var(--muted);max-width:95ch;line-height:1.65}
 
-    .toolbar{
-      position:sticky;
-      top:0;
-      z-index:50;
-      border-top:1px solid rgba(255,255,255,.06);
-      border-bottom:1px solid rgba(255,255,255,.06);
-      background:linear-gradient(180deg, rgba(9,13,22,.92), rgba(9,13,22,.72));
-      backdrop-filter: blur(10px);
-    }
-
-    .toolbar-inner{
-      max-width:var(--maxw);
-      margin:0 auto;
-      padding:12px 18px;
-      display:flex;
-      gap:12px;
-      align-items:center;
-      justify-content:space-between;
-      flex-wrap:wrap;
-    }
-
-    .filters{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-
-    .filter-btn{
-      appearance:none;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(0,0,0,.25);
-      color:var(--ink);
-      border-radius:999px;
-      padding:8px 11px;
-      font-family:var(--mono);
-      font-size:12px;
-      letter-spacing:.2px;
-      cursor:pointer;
-      user-select:none;
-    }
-
-    .filter-btn[aria-pressed="true"]{
-      border-color:rgba(111,183,255,.55);
-      box-shadow:0 0 0 3px rgba(111,183,255,.14);
-      background:rgba(111,183,255,.12);
-    }
-
-    .toolbar-meta{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
-
-    .search{
-      width:min(420px, 72vw);
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(0,0,0,.25);
-      color:var(--ink);
-      border-radius:12px;
-      padding:10px 12px;
-      font-family:var(--sans);
-      outline:none;
-    }
-    .search::placeholder{color:rgba(233,240,255,.55)}
-
-    .count{
-      font-family:var(--mono);
-      font-size:12px;
-      color:var(--muted);
-      padding:8px 10px;
-      border:1px solid rgba(255,255,255,.10);
-      border-radius:12px;
-      background:rgba(0,0,0,.18);
-    }
-
     main{max-width:var(--maxw);margin:0 auto;padding:18px}
     .notice{
       border:1px solid rgba(255,211,124,.25);
@@ -117,14 +50,7 @@
 
     .notice.tight{margin-top:10px}
 
-    .grid{column-count:1;column-gap:14px}
-
-    @media (min-width: 760px){
-      .grid{column-count:2}
-    }
-    @media (min-width: 1140px){
-      .grid{column-count:3}
-    }
+    .grid{display:flex;flex-direction:column;gap:14px}
 
     section.card{
       border:1px solid var(--line);
@@ -141,63 +67,35 @@
       border-radius:18px;
       box-shadow:var(--shadow);
       overflow:hidden;
-      display:inline-block;
-      width:100%;
-      margin:0 0 14px;
-      break-inside: avoid;
-    }
-
-    article.case[data-unverified="true"]{
-      border-color:rgba(255,207,110,.55);
-      background:linear-gradient(180deg, rgba(42,30,10,.26), rgba(10,14,22,.72));
-    }
-
-    .case-hit{
       display:block;
       width:100%;
-      text-align:left;
-      background:transparent;
-      border:0;
       padding:16px;
-      cursor:pointer;
-      color:inherit;
     }
 
-    .case-hit:focus-visible{outline:2px solid rgba(111,183,255,.65);outline-offset:2px;border-radius:14px}
+    .case-title{margin:0 0 10px;font-size:20px;line-height:1.25}
+    .case-lede{margin:8px 0 0;color:var(--muted);line-height:1.65;max-width:110ch}
 
-    .case-title{margin:0 0 10px;font-size:18px;line-height:1.25}
-
-    .case-badges{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 10px}
-
-    .badge{
+    details.case-details{margin-top:12px}
+    details.case-details > summary{
+      list-style:none;
+      cursor:pointer;
+      user-select:none;
       display:inline-flex;
       align-items:center;
-      gap:8px;
+      gap:10px;
+      padding:8px 10px;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:12px;
+      background:rgba(0,0,0,.18);
+      color:var(--ink);
       font-family:var(--mono);
       font-size:12px;
       letter-spacing:.2px;
-      padding:7px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(0,0,0,.18);
-      color:var(--muted);
       text-transform:uppercase;
     }
-
-    .badge.badge-accent{border-color:rgba(111,183,255,.45);color:rgba(187,224,255,.95)}
-    .badge.badge-warn{border-color:rgba(255,207,110,.55);color:rgba(255,219,140,.98)}
-
-    .case-summary{
-      margin:0;
-      color:var(--muted);
-      line-height:1.65;
-      display:-webkit-box;
-      -webkit-line-clamp:3;
-      -webkit-box-orient:vertical;
-      overflow:hidden;
-    }
-
-    .case-detail{display:none}
+    details.case-details > summary::-webkit-details-marker{display:none}
+    details.case-details[open] > summary{border-color:rgba(111,183,255,.55);box-shadow:0 0 0 3px rgba(111,183,255,.14)}
+    .case-body{margin-top:12px}
 
     h2{margin:0 0 8px;font-size:20px}
     p{margin:10px 0;line-height:1.7}
@@ -209,18 +107,7 @@
       font-size:13px;letter-spacing:.6px;text-transform:uppercase;color:var(--muted)
     }
 
-    .tag{
-      display:inline-block;
-      font-size:12px;
-      letter-spacing:.5px;
-      text-transform:uppercase;
-      color:var(--muted);
-      border:1px solid var(--line);
-      background:rgba(0,0,0,.18);
-      padding:6px 10px;
-      border-radius:999px;
-      margin:0 8px 8px 0;
-    }
+    .tag{display:none}
 
     .subhead{margin:14px 0 6px;font-size:16px}
     .note-inline{color:var(--muted);font-size:13px}
@@ -269,60 +156,20 @@
       figure img{ max-height:380px; }
     }
 
-    dialog.modal{
-      width:min(980px, calc(100vw - 26px));
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:18px;
-      padding:0;
-      background:linear-gradient(180deg, rgba(12,17,28,.96), rgba(7,10,16,.98));
-      color:var(--ink);
-      box-shadow:0 30px 120px rgba(0,0,0,.65);
-    }
-    dialog.modal::backdrop{background:rgba(0,0,0,.65)}
-    .modal-head{padding:16px 16px 12px;border-bottom:1px solid rgba(255,255,255,.10)}
-    .modal-title{margin:0 0 10px;font-size:18px;line-height:1.25}
-    .modal-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-    .modal-close{
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(0,0,0,.25);
-      color:var(--ink);
-      border-radius:12px;
-      padding:8px 10px;
-      font-family:var(--mono);
-      cursor:pointer;
-    }
-    .modal-body{padding:16px}
+    
   </style>
 </head>
 
 <body>
   <header>
-    <h1>“It Doesn’t Help That…” — A Sourced Compilation of Reported Associations, Allegations, and Observations</h1>
+    <h1>Trump Associations Dossier — Sourced Context &amp; Reporting</h1>
     <p class="sub">
-      This is a compilation of publicly discussed claims, allegations, and observations regarding former U.S. President Donald J. Trump
-      and his associations with individuals involved in sex crimes or other concerning incidents, plus additional “it doesn’t help that…”
-      observations from the same thread. Each section includes citations to reporting, court coverage, or other public sources.
-      These points are <b>not</b> presented as proof of any criminal behavior by Mr. Trump; rather, they document why some observers consider
-      the overall pattern troubling and invite clarification or context from Trump or his defenders.
+      This is a sourced dossier of publicly reported facts, allegations, and associations concerning <b>current U.S. President Donald J. Trump</b>
+      and the networks around him. Each entry links to reporting, court coverage, or primary/public records where available.
+      This page is <b>not</b> a verdict; it is a structured collection of context that critics argue is relevant when assessing whether Trump’s
+      long-running relationships and institutional touchpoints suggest complicity, tolerance, or enabling behavior.
     </p>
   </header>
-
-  <div class="toolbar" role="region" aria-label="Case filters">
-    <div class="toolbar-inner">
-      <div class="filters" role="group" aria-label="Tag filters">
-        <button class="filter-btn" type="button" data-tag="Epstein" aria-pressed="false">Epstein</button>
-        <button class="filter-btn" type="button" data-tag="Convictions" aria-pressed="false">Convictions</button>
-        <button class="filter-btn" type="button" data-tag="Associates" aria-pressed="false">Associates</button>
-        <button class="filter-btn" type="button" data-tag="It Doesn't Help" aria-pressed="false">It Doesn't Help</button>
-        <button class="filter-btn" type="button" data-tag="Unverified" aria-pressed="false">Unverified</button>
-      </div>
-
-      <div class="toolbar-meta">
-        <input class="search" id="caseSearch" type="search" placeholder="Search titles + summaries" aria-label="Search cases" />
-        <div class="count" id="caseCount">Loading…</div>
-      </div>
-    </div>
-  </div>
 
   <main>
     <div class="notice">
@@ -331,6 +178,107 @@
     </div>
 
     <div class="grid" id="caseGrid">
+
+      <section class="card" id="strongest-evidence">
+        <h2>Trump’s strongest evidence (Epstein-file context)</h2>
+
+        <p>
+          This entry summarizes the strongest <b>publicly cited</b> points used to argue that the “Epstein files” do <b>not</b> establish criminal wrongdoing by
+          current U.S. President Donald J. Trump. It is included for balance and to separate <b>documented evidence</b> from <b>inference</b>, rumor, and partisan framing.
+        </p>
+
+        <h3 class="subhead">Points commonly cited as exculpatory</h3>
+
+        <ul>
+          <li>
+            <b>No public victim accusation (as described in reporting):</b> NBC News reported that Virginia Giuffre (a key Epstein survivor) never accused Trump of wrongdoing
+            and wrote in a posthumously published memoir that Trump “couldn’t have been friendlier” when she met him at Mar-a-Lago.
+          </li>
+          <li>
+            <b>Claimed distancing / ban from Mar-a-Lago:</b> Trump has said Epstein “stole” Giuffre from the Mar-a-Lago spa, and White House communications described Trump
+            ejecting Epstein from the club “for being a creep.” (The timing and underlying details are disputed in broader reporting; this bullet reflects those statements as cited by NBC.)
+          </li>
+          <li>
+            <b>Epstein emails cited by the White House as non-incriminating:</b> NBC News reported on emails attributed to Epstein that reference Trump, including one stating that
+            the “dog that hasn’t barked is trump” and that a victim “spent hours” with Trump but “he has never once been mentioned.” The White House said these emails “prove absolutely nothing”
+            beyond its view that Trump “did nothing wrong.”
+          </li>
+          <li>
+            <b>Mentions are not evidence:</b> Supporters argue that name mentions, social overlap, and even travel logs are not by themselves proof of participation in Epstein’s crimes.
+            The strongest exculpatory claim in this frame is the <b>absence</b> of a clear victim allegation or corroborated criminal conduct within the released materials.
+          </li>
+        </ul>
+
+        <h3 class="subhead">DOJ statements and review summaries</h3>
+
+        <ul>
+          <li>
+            <b>DOJ press release (Jan 30, 2026):</b> The Department of Justice stated that the production includes public submissions and may include fake or falsely
+            submitted materials, and that some documents contain “untrue and sensationalist claims” against President Trump submitted shortly before the 2020 election.
+            DOJ added: “To be clear, the claims are unfounded and false …”
+          </li>
+          <li>
+            <b>DOJ/FBI memo (review findings):</b> A DOJ-hosted memo summarizing review conclusions is frequently cited as stating that the review did not identify a
+            “client list,” credible evidence of blackmail of prominent individuals, or a basis for investigating uncharged third parties. Readers should consult the
+            memo directly.
+          </li>
+        </ul>
+
+        <h3 class="subhead">Limits and open questions</h3>
+
+        <p>
+          This entry is not an “exoneration” finding, and it does not resolve questions about what Trump may have known (or when). It summarizes what is cited as the
+          most favorable reading of the currently referenced releases in mainstream coverage.
+        </p>
+
+        <div class="sources-title">Sources</div>
+        <ul>
+          <li>
+            <a href="https://www.justice.gov/opa/pr/department-justice-publishes-35-million-responsive-pages-compliance-epstein-files" target="_blank" rel="noopener">
+              DOJ (Jan 30, 2026): “Department of Justice Publishes 3.5 Million Responsive Pages…” (includes statement on unfounded claims)
+            </a>
+          </li>
+          <li>
+            <a href="https://www.justice.gov/opa/media/1407001/dl" target="_blank" rel="noopener">
+              DOJ: DOJ/FBI memo (review findings) — primary document link
+            </a>
+          </li>
+          <li>
+            <a href="https://www.justice.gov/letter-to-congress.pdf" target="_blank" rel="noopener">
+              DOJ: Letter to Congress referenced in the Jan 30, 2026 press release
+            </a>
+          </li>
+          <li>
+            <a href="https://www.nbcnews.com/politics/donald-trump/jeffrey-epstein-wrote-trump-knew-girls-referenced-mar-lago-newly-relea-rcna243422" target="_blank" rel="noopener">
+              NBC News: Coverage of Epstein emails referencing Trump (includes excerpts and White House response)
+            </a>
+          </li>
+          <li>
+            <a href="https://www.nbcnews.com/politics/politics-news/trump-says-jeffrey-epstein-stole-virginia-giuffre-worked-mar-lago-spa-rcna221810" target="_blank" rel="noopener">
+              NBC News: Trump statements about Giuffre and Mar-a-Lago; White House characterization of Epstein ban
+            </a>
+          </li>
+          <li>
+            <a href="https://www.documentcloud.org/documents/26223097-oversight-epstein-email-1/" target="_blank" rel="noopener">
+              DocumentCloud: House Oversight release of an Epstein email (as referenced in NBC coverage)
+            </a>
+          </li>
+          <li>
+            <a href="https://www.snopes.com/fact-check/trump-epstein-jet/" target="_blank" rel="noopener">
+              Snopes: Context on DOJ-released prosecutor email about Trump’s appearances in Epstein flight records
+            </a>
+          </li>
+          <li>
+            <a href="https://www.justice.gov/epstein/files/DataSet%208/EFTA00016732.pdf" target="_blank" rel="noopener">DOJ: EFTA00016732 (referenced by Snopes)</a>
+          </li>
+          <li>
+            <a href="https://www.justice.gov/epstein/files/DataSet%208/EFTA00028716.pdf" target="_blank" rel="noopener">DOJ: EFTA00028716 (referenced by Snopes)</a>
+          </li>
+          <li>
+            <a href="https://www.justice.gov/epstein" target="_blank" rel="noopener">DOJ: Epstein files portal</a>
+          </li>
+        </ul>
+      </section>
 
       <!-- =========================
            ORIGINAL MASTER PAGE SECTIONS
@@ -1717,24 +1665,6 @@
         </ul>
       </section>
 
-      <section class="card" id="giuliani-aquino-presidio">
-        <span class="tag">It doesn’t help</span>
-        <h2>It doesn’t help: Giuliani / Michael Aquino / Presidio claims (not verified)</h2>
-
-        <p>
-          It doesn’t help that Trump’s longtime ally Rudy Giuliani is sometimes pulled into rumors about the Presidio daycare scandal
-          and Lt. Col. Michael Aquino. To be clear: this specific “Giuliani got Aquino out of trouble” claim is commonly repeated online but is not
-          supported by authoritative documentation in the sources linked here. It remains an example of how conspiracy narratives attach to the Trump orbit—
-          and how those narratives spread because the ecosystem already feels suspicious to many people.
-        </p>
-
-        <div class="sources-title">Sources</div>
-        <ul>
-          <li><em>No authoritative source provided in the current set for Giuliani’s alleged role; listed here explicitly as unverified.</em></li>
-          <li><a href="https://medium.com/@rossstua/how-a-blowjob-shaped-the-future-of-america-22c4ab5d0be7" target="_blank" rel="noopener">Medium (contextual discussion; not a primary source for the claim)</a></li>
-        </ul>
-      </section>
-
       <section class="card" id="vance-ambrosia-blood">
         <span class="tag">It doesn’t help</span>
         <h2>It doesn’t help: “Ambrosia,” blood-transfusion culture, and Epstein-adjacent weirdness</h2>
@@ -2229,123 +2159,126 @@
     </div>
   </main>
 
-  <dialog class="modal" id="caseModal" aria-label="Case details">
-    <div class="modal-head">
-      <div class="modal-actions">
-        <div>
-          <h2 class="modal-title" id="modalTitle"></h2>
-          <div class="case-badges" id="modalBadges"></div>
-        </div>
-        <button class="modal-close" type="button" id="modalClose">Close</button>
-      </div>
-    </div>
-    <div class="modal-body" id="modalBody"></div>
-  </dialog>
-
   <script>
     (function(){
       var grid = document.getElementById('caseGrid');
       if(!grid) return;
 
-      var modal = document.getElementById('caseModal');
-      var modalTitle = document.getElementById('modalTitle');
-      var modalBadges = document.getElementById('modalBadges');
-      var modalBody = document.getElementById('modalBody');
-      var modalClose = document.getElementById('modalClose');
-
-      var currentCaseId = null;
-      var lastFocusEl = null;
       var internalHashChange = false;
-
-      var filterButtons = Array.prototype.slice.call(document.querySelectorAll('.filter-btn'));
-      var search = document.getElementById('caseSearch');
-      var count = document.getElementById('caseCount');
-
-      var unverifiedIds = new Set(['giuliani-aquino-presidio','erika-kirk-otto-busher']);
 
       function norm(s){
         return String(s || '').trim().toLowerCase();
       }
 
-      function computePrimaryTags(sourceTags, id){
-        var t = sourceTags.map(norm);
-        var primary = new Set();
-        if(t.some(function(x){return x.indexOf('epstein') !== -1;})) primary.add('Epstein');
-        if(t.some(function(x){return x.indexOf('convict') !== -1;} ) || id === 'convictions') primary.add('Convictions');
-        if(t.some(function(x){
-          return x.indexOf('association') !== -1 || x.indexOf('associate') !== -1 || x.indexOf('adviser') !== -1 || x.indexOf('campaign') !== -1 || x.indexOf('endorsement') !== -1 || x.indexOf('social circle') !== -1;
-        })) primary.add('Associates');
-        if(t.some(function(x){return x.indexOf("it doesn") !== -1;})) primary.add("It Doesn't Help");
-        if(unverifiedIds.has(id)) primary.add('Unverified');
-        return Array.from(primary);
+      function cleanDisplayTitle(s){
+        var t = String(s || '').trim();
+        t = t.replace(/^It doesn[’']t help\s*:\s*/i, '');
+        return t;
       }
 
-      function badgeClass(tag){
-        if(tag === 'Unverified') return 'badge badge-warn';
-        if(tag === 'Epstein' || tag === 'Convictions') return 'badge badge-accent';
-        return 'badge';
+      function professionalizeText(s){
+        var t = String(s || '');
+        t = t.replace(/\s+/g,' ').trim();
+        t = t.replace(/^It doesn[’']t help that\s+/i, 'Critics argue that ');
+        t = t.replace(/^And it doesn[’']t help that\s+/i, 'Critics also argue that ');
+        t = t.replace(/^It also doesn[’']t help that\s+/i, 'Critics also argue that ');
+        t = t.replace(/\bdoesn[’']t help\b/gi, 'is concerning');
+        return t;
       }
 
-      function makeBadges(tags){
-        return tags.map(function(tag){
-          return '<span class="'+badgeClass(tag)+'">'+tag+'</span>';
-        }).join('');
+      function professionalizeHtml(html){
+        var t = String(html || '');
+        t = t.replace(/<h3\s+class="subhead">\s*Why critics say this\s*[“\"]?doesn[’']t help[”\"]?\s*<\/h3>/gi, '<h3 class="subhead">Why critics consider this relevant</h3>');
+        t = t.replace(/<h3\s+class="subhead">\s*Why critics say this\s*[“\"]?is concerning[”\"]?\s*<\/h3>/gi, '<h3 class="subhead">Why critics consider this relevant</h3>');
+        t = t.replace(/It doesn[’']t help that\s+/gi, 'Critics argue that ');
+        t = t.replace(/\bAnd it doesn[’']t help that\s+/gi, 'Critics also argue that ');
+        t = t.replace(/\bIt also doesn[’']t help that\s+/gi, 'Critics also argue that ');
+        t = t.replace(/\bIt doesn[’']t help\b/gi, 'Critics argue this is concerning');
+        t = t.replace(/\bdoesn[’']t help\b/gi, 'is concerning');
+        return t;
+      }
+
+      function shorten(s, max){
+        var t = String(s || '').replace(/\s+/g,' ').trim();
+        if(!t) return '';
+        var m = typeof max === 'number' ? max : 240;
+        if(t.length <= m) return t;
+        var cut = t.slice(0, m);
+        var lastSpace = cut.lastIndexOf(' ');
+        if(lastSpace > 120) cut = cut.slice(0, lastSpace);
+        return cut.replace(/[\s\.,;:!\?]+$/,'') + '…';
       }
 
       function textFromFirstParagraph(el){
         var p = el.querySelector('p');
         if(!p) return '';
-        return (p.textContent || '').replace(/\s+/g,' ').trim();
+        return professionalizeText(p.textContent || '');
       }
 
       function buildCaseFromSection(section){
         var id = section.getAttribute('id') || '';
         var titleEl = section.querySelector('h2');
-        var title = titleEl ? titleEl.textContent.trim() : 'Untitled';
-        var tagEls = Array.prototype.slice.call(section.querySelectorAll('.tag'));
-        var rawTags = tagEls.map(function(t){return t.textContent.trim();}).filter(Boolean);
-        var primaryTags = computePrimaryTags(rawTags, id);
+        var rawTitle = titleEl ? titleEl.textContent.trim() : 'Untitled';
+        var title = cleanDisplayTitle(rawTitle);
+
         var summary = textFromFirstParagraph(section);
+
+        var mediaClones = [];
+        Array.prototype.slice.call(section.children).forEach(function(child){
+          if(!child) return;
+          if(child.classList && child.classList.contains('media')) mediaClones.push(child.cloneNode(true));
+          if(child.tagName === 'FIGURE') mediaClones.push(child.cloneNode(true));
+        });
 
         var clone = section.cloneNode(true);
         Array.prototype.slice.call(clone.querySelectorAll('.tag')).forEach(function(n){n.remove();});
         var cloneTitle = clone.querySelector('h2');
         if(cloneTitle) cloneTitle.remove();
-
-        var isUnverified = primaryTags.indexOf('Unverified') !== -1;
+        Array.prototype.slice.call(clone.querySelectorAll('.media')).forEach(function(n){n.remove();});
+        Array.prototype.slice.call(clone.querySelectorAll('figure')).forEach(function(n){n.remove();});
 
         var article = document.createElement('article');
         article.className = 'case';
         if(id) article.id = id;
-        article.setAttribute('data-tags', primaryTags.join(','));
-        article.setAttribute('data-unverified', isUnverified ? 'true' : 'false');
 
-        var hit = document.createElement('button');
-        hit.className = 'case-hit';
-        hit.type = 'button';
-        hit.setAttribute('aria-haspopup','dialog');
+        var h = document.createElement('h2');
+        h.className = 'case-title';
+        h.textContent = title;
 
-        hit.innerHTML =
-          '<div class="case-badges">'+makeBadges(primaryTags)+'</div>'+
-          '<h2 class="case-title">'+title+'</h2>'+
-          '<p class="case-summary">'+summary+'</p>'+
-          '<div class="case-detail" hidden></div>';
+        var mediaWrap = document.createElement('div');
+        mediaWrap.className = 'media';
+        mediaClones.forEach(function(n){ mediaWrap.appendChild(n); });
 
-        var detail = hit.querySelector('.case-detail');
-        detail.innerHTML = clone.innerHTML;
+        var lede = document.createElement('p');
+        lede.className = 'case-lede';
+        lede.textContent = shorten(summary, 260);
 
-        var badgesHtml = makeBadges(primaryTags);
+        var details = document.createElement('details');
+        details.className = 'case-details';
+        details.innerHTML = '<summary>Details</summary><div class="case-body"></div>';
 
-        hit.addEventListener('click', function(){
-          openModal({
-            id: id,
-            title: title,
-            badgesHtml: badgesHtml,
-            bodyHtml: detail.innerHTML
-          }, { setHash: true, focus: true });
+        var body = details.querySelector('.case-body');
+        if(body){
+          body.innerHTML = professionalizeHtml(clone.innerHTML);
+        }
+
+        details.addEventListener('toggle', function(){
+          if(!id) return;
+          if(details.open){
+            internalHashChange = true;
+            location.hash = id;
+          }else{
+            var hashId = decodeURIComponent(String(location.hash || '').replace(/^#/,''));
+            if(hashId === id){
+              history.pushState('', document.title, window.location.pathname + window.location.search);
+            }
+          }
         });
 
-        article.appendChild(hit);
+        article.appendChild(h);
+        if(mediaWrap.childNodes.length) article.appendChild(mediaWrap);
+        if(summary) article.appendChild(lede);
+        article.appendChild(details);
         return article;
       }
 
@@ -2359,156 +2292,14 @@
         grid.appendChild(frag);
       }
 
-      function getSelectedTags(){
-        var selected = new Set();
-        filterButtons.forEach(function(btn){
-          if(btn.getAttribute('aria-pressed') === 'true') selected.add(btn.getAttribute('data-tag'));
-        });
-        return selected;
-      }
-
-      function applyFilters(){
-        var selected = getSelectedTags();
-        var q = norm(search && search.value);
-        var items = Array.prototype.slice.call(grid.querySelectorAll('article.case'));
-        var visible = 0;
-
-        items.forEach(function(item){
-          var tags = (item.getAttribute('data-tags') || '').split(',').map(function(x){return x.trim();}).filter(Boolean);
-          var matchesTags = selected.size === 0 || tags.some(function(t){return selected.has(t);});
-          var text = norm(item.textContent);
-          var matchesSearch = !q || text.indexOf(q) !== -1;
-          var show = matchesTags && matchesSearch;
-          item.style.display = show ? 'inline-block' : 'none';
-          if(show) visible++;
-        });
-
-        if(count) count.textContent = visible + ' case' + (visible === 1 ? '' : 's');
-      }
-
-      function toggleFilter(btn){
-        var pressed = btn.getAttribute('aria-pressed') === 'true';
-        btn.setAttribute('aria-pressed', pressed ? 'false' : 'true');
-        applyFilters();
-      }
-
-      filterButtons.forEach(function(btn){
-        btn.addEventListener('click', function(){toggleFilter(btn);});
-      });
-
-      if(search){
-        search.addEventListener('input', applyFilters);
-      }
-
-      function closeModal(){
-        if(!modal) return;
-        var hashId = decodeURIComponent(String(location.hash || '').replace(/^#/,''));
-        if(currentCaseId && hashId === currentCaseId){
-          history.pushState('', document.title, window.location.pathname + window.location.search);
-        }
-
-        currentCaseId = null;
-
-        if(typeof modal.close === 'function') modal.close();
-        else modal.removeAttribute('open');
-
-        if(lastFocusEl && lastFocusEl.focus){
-          lastFocusEl.focus();
-        }
-        lastFocusEl = null;
-      }
-
-      if(modalClose) modalClose.addEventListener('click', closeModal);
-
-      function isModalOpen(){
-        if(!modal) return false;
-        if(typeof modal.open === 'boolean') return modal.open;
-        return modal.hasAttribute('open');
-      }
-
-      if(modal) modal.addEventListener('cancel', function(e){
-        e.preventDefault();
-        closeModal();
-      });
-
-      document.addEventListener('keydown', function(e){
-        if(e.key === 'Escape' && isModalOpen()){
-          e.preventDefault();
-          closeModal();
-        }
-      });
-
-      if(modal) modal.addEventListener('click', function(e){
-        var r = modal.getBoundingClientRect();
-        var inside = e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
-        if(!inside) closeModal();
-      });
-
-      function openModal(payload, opts){
-        if(!modal) return;
-
-        lastFocusEl = document.activeElement;
-        currentCaseId = payload && payload.id ? payload.id : null;
-
-        modalTitle.textContent = payload && payload.title ? payload.title : '';
-        modalBadges.innerHTML = payload && payload.badgesHtml ? payload.badgesHtml : '';
-        modalBody.innerHTML = payload && payload.bodyHtml ? payload.bodyHtml : '';
-
-        wireImageFallback(modalBody);
-
-        if(opts && opts.setHash && currentCaseId){
-          var hashId = decodeURIComponent(String(location.hash || '').replace(/^#/,''));
-          if(hashId !== currentCaseId){
-            internalHashChange = true;
-            location.hash = currentCaseId;
-          }
-        }
-
-        if(typeof modal.showModal === 'function'){
-          if(!modal.open) modal.showModal();
-        }else{
-          modal.setAttribute('open','');
-        }
-
-        if(opts && opts.focus){
-          setTimeout(function(){
-            if(modalClose && modalClose.focus) modalClose.focus();
-          }, 0);
-        }
-      }
-
-      function payloadFromCaseElement(caseEl){
-        if(!caseEl) return null;
-        var hit = caseEl.querySelector('.case-hit');
-        if(!hit) return null;
-        var titleEl = hit.querySelector('.case-title');
-        var badgesEl = hit.querySelector('.case-badges');
-        var detailEl = hit.querySelector('.case-detail');
-
-        return {
-          id: caseEl.id || '',
-          title: titleEl ? titleEl.textContent.trim() : '',
-          badgesHtml: badgesEl ? badgesEl.innerHTML : '',
-          bodyHtml: detailEl ? detailEl.innerHTML : ''
-        };
-      }
-
-      function openCaseById(id, opts){
-        if(!id) return;
-        var caseEl = document.getElementById(id);
-        if(!caseEl || !caseEl.classList || !caseEl.classList.contains('case')) return;
-        var payload = payloadFromCaseElement(caseEl);
-        if(!payload) return;
-        openModal(payload, opts);
-      }
-
       function syncFromHash(){
         var id = decodeURIComponent(String(location.hash || '').replace(/^#/,''));
-        if(!id){
-          if(isModalOpen()) closeModal();
-          return;
-        }
-        openCaseById(id, { setHash: false, focus: true });
+        if(!id) return;
+        var el = document.getElementById(id);
+        if(!el) return;
+        var details = el.querySelector('details.case-details');
+        if(details && !details.open) details.open = true;
+        try{ el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }catch(_e){ el.scrollIntoView(true); }
       }
 
       window.addEventListener('hashchange', function(){
@@ -2533,7 +2324,6 @@
 
       rebuild();
       wireImageFallback(document);
-      applyFilters();
       syncFromHash();
     })();
   </script>
@@ -2541,7 +2331,7 @@
   <footer>
     <p>
       Build note: this page is a static HTML document. Publish by committing as <code>index.html</code>.
-      All image files should sit in the same folder (or update <code>src</code> paths accordingly).
+      Place <code>pictures_for_website_png</code> beside it so image paths like <code>pictures_for_website_png/trump-epstein.png</code> resolve.
     </p>
   </footer>
 </body>
