@@ -3,8 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Trump Associations Dossier — Sourced Context &amp; Reporting</title>
+  <title>The Trump Files — Sourced Context &amp; Reporting</title>
   <meta name="description" content="A sourced dossier of publicly reported facts, allegations, and associations for reader review; not a verdict of guilt or innocence." />
+  <link rel="icon" href="trump-icon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="trump-icon.png" />
 
   <style>
     :root{
@@ -30,16 +32,59 @@
       radial-gradient(900px 600px at 95% 10%, rgba(255,207,110,.10), transparent 55%),
       linear-gradient(180deg,#060810, var(--bg) 25%, #060810);
       color:var(--ink);font-family:var(--sans);
+      font-size:18px;
+    }
+
+    body{overflow-x:hidden}
+
+    *{min-width:0}
+
+    p, li, a, code, summary, h1, h2, h3{
+      overflow-wrap:anywhere;
+      word-break:break-word;
     }
 
     a{color:var(--accent);text-decoration:none}
     a:hover{text-decoration:underline}
 
     header{max-width:var(--maxw);margin:0 auto;padding:40px 18px 14px}
+    .header-row{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+    .header-text{min-width:0}
+    .header-icons{display:flex;align-items:flex-start;gap:10px;flex:0 0 auto}
+    .header-icons img{display:block;width:160px;height:auto;border-radius:16px;border:1px solid rgba(255,255,255,.12);background:rgba(0,0,0,.18);box-shadow:0 8px 24px rgba(0,0,0,.20)}
     h1{margin:0 0 10px;font-size:clamp(26px,3vw,40px);letter-spacing:.2px}
     .sub{margin:0;color:var(--muted);max-width:95ch;line-height:1.65}
 
     main{max-width:var(--maxw);margin:0 auto;padding:18px}
+
+    .layout{display:grid;grid-template-columns:minmax(220px, 280px) 1fr;gap:18px;align-items:start}
+    .content{min-width:0}
+
+    .toc{
+      position:sticky;
+      top:18px;
+      max-height:calc(100vh - 36px);
+      overflow:auto;
+      border:1px solid var(--line);
+      background:rgba(16,23,38,.60);
+      border-radius:16px;
+      padding:12px;
+      box-shadow:0 8px 30px rgba(0,0,0,.20);
+    }
+    .toc-title{font-family:var(--mono);font-size:12px;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);margin:2px 0 10px}
+    .toc nav ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+    .toc nav a{display:block;padding:8px 10px;border-radius:12px;border:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.14);color:var(--ink);text-decoration:none;line-height:1.25}
+    .toc nav a:hover{border-color:rgba(111,183,255,.35);text-decoration:none}
+    .toc nav a.active{border-color:rgba(111,183,255,.55);box-shadow:0 0 0 3px rgba(111,183,255,.12)}
+
+    details.toc-mobile{display:none;position:sticky;top:12px;z-index:40;border:1px solid var(--line);background:rgba(16,23,38,.72);border-radius:14px;box-shadow:0 8px 24px rgba(0,0,0,.22);margin:0 0 14px}
+    details.toc-mobile > summary{list-style:none;cursor:pointer;user-select:none;padding:10px 12px;font-family:var(--mono);font-size:12px;letter-spacing:.5px;text-transform:uppercase}
+    details.toc-mobile > summary::-webkit-details-marker{display:none}
+    details.toc-mobile nav{padding:0 10px 10px}
+    details.toc-mobile nav ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+    details.toc-mobile nav a{display:block;padding:10px 10px;border-radius:12px;border:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.14);color:var(--ink);text-decoration:none;line-height:1.25}
+    details.toc-mobile nav a:hover{text-decoration:none;border-color:rgba(111,183,255,.35)}
+    details.toc-mobile nav a.active{border-color:rgba(111,183,255,.55);box-shadow:0 0 0 3px rgba(111,183,255,.12)}
     .notice{
       border:1px solid rgba(255,211,124,.25);
       background:rgba(255,211,124,.06);
@@ -50,7 +95,7 @@
 
     .notice.tight{margin-top:10px}
 
-    .grid{display:flex;flex-direction:column;gap:14px}
+    .grid{display:flex;flex-direction:column;gap:18px}
 
     section.card{
       border:1px solid var(--line);
@@ -72,7 +117,7 @@
       padding:16px;
     }
 
-    .case-title{margin:0 0 10px;font-size:20px;line-height:1.25}
+    .case-title{margin:0 0 10px;font-size:22px;line-height:1.25}
     .case-lede{margin:8px 0 0;color:var(--muted);line-height:1.65;max-width:110ch}
 
     details.case-details{margin-top:12px}
@@ -97,6 +142,26 @@
     details.case-details[open] > summary{border-color:rgba(111,183,255,.55);box-shadow:0 0 0 3px rgba(111,183,255,.14)}
     .case-body{margin-top:12px}
 
+    .case-title{display:flex;align-items:flex-start;gap:10px}
+    .case-title .anchor{
+      margin-left:auto;
+      flex:0 0 auto;
+      font-family:var(--mono);
+      font-size:12px;
+      letter-spacing:.2px;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:10px;
+      padding:6px 8px;
+      background:rgba(0,0,0,.18);
+      color:var(--muted);
+      text-decoration:none;
+      opacity:.0;
+      transform:translateY(2px);
+      transition:opacity .15s ease, transform .15s ease, border-color .15s ease;
+    }
+    article.case:hover .case-title .anchor{opacity:1;transform:translateY(0)}
+    .case-title .anchor:hover{border-color:rgba(111,183,255,.45);color:var(--ink)}
+
     h2{margin:0 0 8px;font-size:20px}
     p{margin:10px 0;line-height:1.7}
     ul{margin:8px 0 0;padding-left:18px}
@@ -106,6 +171,24 @@
       margin-top:12px;padding-top:12px;border-top:1px solid var(--line);
       font-size:13px;letter-spacing:.6px;text-transform:uppercase;color:var(--muted)
     }
+
+    details.sources{margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+    details.sources > summary{
+      list-style:none;
+      cursor:pointer;
+      user-select:none;
+      font-size:13px;
+      letter-spacing:.6px;
+      text-transform:uppercase;
+      color:var(--muted);
+      padding:10px 0;
+    }
+    details.sources > summary::-webkit-details-marker{display:none}
+    details.sources[open] > summary{color:var(--ink)}
+    details.sources ul{margin:0 0 8px;padding-left:18px}
+    details.sources li{margin:8px 0;color:var(--muted)}
+    details.sources a{color:var(--accent);text-decoration:none}
+    details.sources a:hover{text-decoration:underline}
 
     .tag{display:none}
 
@@ -135,18 +218,20 @@
       display:block;
       width:100%;
       height:auto;
-      max-height:520px;        /* prevents “covering” by sheer height */
+      max-height:340px;        /* smaller by default */
       object-fit:contain;      /* never crops; keeps aspect */
       background:rgba(0,0,0,.12);
     }
 
-    figcaption{
-      padding:10px 12px;
-      color:var(--muted);
-      font-size:13px;
-      line-height:1.5;
-      border-top:1px solid var(--line);
+    figcaption{display:none}
+
+    article.case .media{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(160px, 1fr));
+      gap:12px;
+      align-items:start;
     }
+    article.case .media figure img{max-height:240px}
 
     footer{max-width:var(--maxw);margin:0 auto;padding:22px 18px 50px;color:var(--muted)}
     .footer-top{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
@@ -155,12 +240,21 @@
     .footer-gh:hover{text-decoration:underline}
     .gh-icon{width:18px;height:18px;display:inline-block;fill:currentColor}
     .footer-note,.footer-quote,.footer-services{margin:10px 0 0;color:var(--muted);line-height:1.6}
+    .footer-meta{margin:10px 0 0;color:var(--muted);line-height:1.6}
     .footer-quote b{color:var(--ink)}
     code{font-family:var(--mono);font-size:.95em}
 
     /* Optional: reduce max image height on small screens */
     @media (max-width: 560px){
-      figure img{ max-height:380px; }
+      figure img{ max-height:240px; }
+      article.case .media{grid-template-columns:repeat(auto-fit, minmax(140px, 1fr));}
+      .header-icons img{width:120px;border-radius:14px}
+    }
+
+    @media (max-width: 980px){
+      .layout{grid-template-columns:1fr}
+      aside.toc{display:none}
+      details.toc-mobile{display:block}
     }
 
     
@@ -168,27 +262,48 @@
 </head>
 
 <body>
-  <header>
-    <h1>Trump Associations Dossier — Sourced Context &amp; Reporting</h1>
-    <p class="sub">
-      This is a sourced dossier of publicly reported facts, allegations, and associations concerning <b>current U.S. President Donald J. Trump</b>
-      and the networks around him. Each entry links to reporting, court coverage, or primary/public records where available.
-      This page is <b>not</b> a verdict; it is a structured collection of context that critics argue is relevant when assessing whether Trump’s
-      long-running relationships and institutional touchpoints suggest complicity, tolerance, or enabling behavior.
-    </p>
+  <header id="top">
+    <div class="header-row">
+      <div class="header-text">
+        <h1>The Trump Files — Sourced Context &amp; Reporting</h1>
+        <p class="sub">
+          This is a sourced dossier of publicly reported facts, allegations, and associations concerning <b>current U.S. President Donald J. Trump</b>
+          and the networks around him. Each entry links to reporting, court coverage, or primary/public records where available.
+          This page is <b>not</b> a verdict; it is a structured collection of context that many readers consider relevant when assessing whether Trump’s
+          long-running relationships and institutional touchpoints suggest complicity, tolerance, or enabling behavior.
+        </p>
+      </div>
+
+      <div class="header-icons" aria-label="Header icons">
+        <img src="gavel.gif" alt="Gavel" loading="eager" />
+        <img src="court_seal.png" alt="Court seal" loading="eager" />
+      </div>
+    </div>
   </header>
 
   <main>
-    <div class="notice">
-      <b>Note:</b> This is a compilation of reported facts, allegations, and associations. Inclusion of a claim or source is not an assertion of guilt.
-      Where appropriate, this page explicitly marks rumors as unverified and invites correction/clarification.
-    </div>
+    <div class="layout">
+      <aside class="toc" aria-label="Table of contents">
+        <div class="toc-title">Contents</div>
+        <nav id="tocNav"></nav>
+      </aside>
 
-    <div class="grid" id="caseGrid">
+      <div class="content">
+        <div class="notice">
+          <b>Note:</b> This is a compilation of reported facts, allegations, and associations. Inclusion of a claim or source is not an assertion of guilt.
+          Where appropriate, this page explicitly marks rumors as unverified and invites correction/clarification.
+        </div>
+
+        <details class="toc-mobile" id="tocMobile">
+          <summary>Contents</summary>
+          <nav id="tocMobileNav"></nav>
+        </details>
+
+        <div class="grid" id="caseGrid">
 
       <section class="card" id="strongest-evidence">
         <span class="tag">Devil’s Advocate</span>
-        <h2>Devil’s Advocate: Trump’s strongest defense (Epstein-file context)</h2>
+        <h2>First, we’ll play Devil’s Advocate—in Trump’s defense</h2>
 
         <div class="media">
           <figure>
@@ -201,6 +316,10 @@
           This entry summarizes the strongest <b>publicly cited</b> points used to argue that the “Epstein files” do <b>not</b> establish criminal wrongdoing by
           current U.S. President Donald J. Trump. This does <b>not</b> mean Trump is innocent; it means that, in the public record summarized here, the cited materials
           are argued to be <b>insufficient to convict</b> without additional corroborated evidence.
+        </p>
+
+        <p>
+        Is he innocent or very good at lawfare?  We'll let you decide.
         </p>
 
         <h3 class="subhead">Points commonly cited as exculpatory</h3>
@@ -316,11 +435,11 @@
         </div>
 
         <p>
-          Donald Trump had a social and professional relationship with financier Jeffrey Epstein, a convicted sex offender,
+          Donald Trump had a social and professional relationship with Jeffrey Epstein, the notorious sex offender,
           that dates back to the late 1980s and 1990s. Footage from 1992 shows Trump and Epstein together at a Mar-a-Lago party,
           laughing, pointing at young women, and enjoying each other’s company. In 2000, Trump and his then-girlfriend (now wife)
           Melania were photographed socializing with Epstein and British socialite Ghislaine Maxwell at Trump’s Palm Beach club.
-          In a 2002 interview, Trump spoke glowingly of Epstein as a “terrific guy,” noting “he likes beautiful women as much as I do,
+          In a 2002 interview, Trump famously spoke of Epstein as a “terrific guy,” noting “he likes beautiful women as much as I do,
           and many of them are on the younger side.”
         </p>
 
@@ -345,7 +464,7 @@
         <p>
           A widely shared clip/source in the current discourse is an X.com post that purports to show Jeffrey Epstein describing himself as
           Donald Trump’s closest friend for roughly a decade. If authentic, this would be significant evidence regarding the depth and duration
-          of their relationship and is therefore included here as a reference point for readers to evaluate.
+          of their relationship and is therefore included here as a reference point for evaluation.
         </p>
 
         <div class="sources-title">Sources</div>
@@ -380,7 +499,7 @@
         </p>
 
         <p>
-          <b>Case outcome:</b> Maxwell was convicted in December 2021 on five felony counts related to recruiting and grooming minors for Epstein’s abuse,
+          <b>Case outcome:</b> Maxwell was convicted in December 2021 on five felony counts related to recruiting and grooming minors for Epstein,
           and she was sentenced in June 2022 to 20 years in federal prison. In September 2024, a federal appeals court upheld her conviction.
         </p>
 
@@ -404,11 +523,11 @@
       </section>
 
       <section class="card" id="roy-cohn-rewritten">
-  <span class="tag">It doesn’t help</span>
+  <span class="tag">Critics argue this is concerning</span>
   <span class="tag">Fixers</span>
   <span class="tag">Allegations</span>
   <span class="tag">Associates</span>
-  <h2>It doesn’t help: Roy Cohn, disbarment, and long-standing blackmail allegations</h2>
+  <h2>Roy Cohn, disbarment, and long-standing blackmail allegations</h2>
 
   <div class="media">
     <figure>
@@ -426,9 +545,28 @@
   </div>
 
   <p>
-    It doesn’t help that Donald Trump’s earliest and most formative legal mentor was Roy Cohn—a figure whose career is
-    <b>documented</b> to include mob associations, multiple criminal indictments, and eventual disbarment for unethical conduct,
-    and whose private life has been the subject of decades of allegations involving coercion, sexual compromise, and blackmail.
+    Trump was mentored by NYC attorney Roy Cohn. Here are Cohn’s three rules, as they are often summarized:
+  </p>
+
+  <ol>
+    <li>
+      <b>Attack, attack, attack:</b>
+      Never defend. Go on offense immediately. Momentum matters more than facts in public conflict.
+    </li>
+    <li>
+      <b>Admit nothing. Deny everything:</b>
+      Never concede error or guilt—ever. Even partial admissions are seen as weakness and will be exploited.
+    </li>
+    <li>
+      <b>Claim victory and never admit defeat:</b>
+      No matter the outcome, declare you won. Control the narrative; perception becomes reality.
+    </li>
+  </ol>
+
+  <p>
+    Cohn is a historically documented New York “fixer” figure
+    with mob-adjacent clients, multiple criminal indictments, and eventual disbarment for unethical conduct. Separately, Cohn’s private
+    life has been the subject of decades of allegations involving coercion, sexual compromise, and blackmail.
   </p>
 
   <p>
@@ -485,21 +623,19 @@
   <h3 class="subhead">Why this matters in Trump’s context</h3>
 
   <p>
-    It doesn’t help Trump’s case that he openly credits Roy Cohn as a mentor who taught him to “hit back harder,” never
-    apologize, and treat ethics as negotiable. Even if one sets aside the unproven sexual blackmail claims, Cohn’s
-    documented career establishes a clear model of power built on intimidation, leverage, and impunity—methods Trump
-    later mirrored in business, media, and politics.
+    Trump has said Cohn taught him to “hit back harder,” never apologize, and treat ethics as negotiable. Even setting aside the unproven
+    sexual-blackmail claims, Cohn’s documented career is a case study in intimidation, leverage, and impunity—methods observers see echoed
+    in Trump’s later approach to business, media, and politics.
   </p>
 
   <p>
-    Critics argue that this lineage matters: Trump did not emerge from nowhere, but from a New York ecosystem where
-    rule-bending fixers were normalized. Supporters respond that Cohn’s sins are his own and do not transfer to Trump.
-    This section is presented to explain why observers find the association troubling, not to assert guilt by inheritance.
+    The broader point of including Cohn here is contextual: Trump’s formative environment included a New York ecosystem where rule-bending
+    fixers were normalized. Supporters respond that Cohn’s conduct is his own and should not be treated as proof about Trump.  But what are the odds Trumps mentor is a suspected illicit sexual blackmail ringleader, which also happens to be epsteins forte?  And what many suspect Trump himself to be involved in?  It raises questions.
   </p>
 
   <p>
-    Critics also argue that the “fixer” pattern didn’t end with Cohn: they point to later figures such as Michael Cohen and the tabloid-era
-    damage-control ecosystem as evidence of a long-running culture of spin, suppression, and hardball reputation management.
+    People who emphasize the “fixer” pattern also point to later figures such as Michael Cohen and the tabloid-era damage-control ecosystem
+    as evidence of a long-running culture of spin, suppression, and hardball reputation management.
   </p>
 
   <div class="sources-title">Sources &amp; Further Reading</div>
@@ -571,14 +707,14 @@
       </section>
 
 <section class="card" id="george-nader">
-  <span class="tag">It doesn’t help</span>
+  <span class="tag">Critics argue this is concerning</span>
   <span class="tag">Campaign orbit</span>
   <span class="tag">Convictions</span>
-  <h2>It doesn’t help: George Nader and repeated child-sex convictions</h2>
+  <h2>George Nader and repeated child-sex convictions</h2>
 
   <p>
-    It doesn’t help that George Nader—an advisor involved in Trump’s 2016 campaign orbit on Middle East policy—has a
-    long, documented history of convictions involving child sexual abuse and child pornography.
+    George Nader—an advisor involved in Trump’s 2016 campaign orbit on Middle East policy—has a long, documented history
+    of convictions involving child sexual abuse and child pornography.
   </p>
 
   <p>
@@ -609,13 +745,13 @@
     operate within proximity to a U.S. presidential campaign and transition process.
   </p>
 
-  <h3 class="subhead">Why critics say this “doesn’t help”</h3>
+  <h3 class="subhead">Why critics consider this relevant</h3>
 
   <p>
-    It doesn’t help Trump’s credibility on issues of judgment and vetting that Nader—whose criminal record predates the
-    2016 campaign—was present in sensitive political environments. Supporters argue that Nader acted independently and
-    that campaigns inevitably encounter unsavory figures. Critics counter that repeated proximity to convicted offenders
-    across multiple contexts forms a troubling pattern.
+    This is often cited as a judgment and vetting issue: Nader’s criminal record predates the 2016 campaign, yet he was present
+    in sensitive political environments. Supporters respond that Nader acted independently and that campaigns inevitably encounter
+    unsavory figures; others argue that repeated proximity to convicted offenders across multiple contexts forms a troubling pattern.
+    Questions start to arise when its apparant so many in Trump's inner circle have similar sexually predatory criminal histories.
   </p>
 
   <div class="sources-title">Sources</div>
@@ -645,10 +781,10 @@
 
 
       <section class="card" id="robert-morris-it-doesnt-help">
-  <span class="tag">It doesn’t help</span>
+  <span class="tag">Critics argue this is concerning</span>
   <span class="tag">Evangelical advisers</span>
   <span class="tag">Indictment</span>
-  <h2>It doesn’t help: Robert Morris, Trump’s evangelical adviser, indicted on child abuse charges</h2>
+  <h2>Robert Morris, Trump’s evangelical adviser, indicted on child abuse charges</h2>
 
   <div class="media">
     <figure>
@@ -662,9 +798,8 @@
   </div>
 
   <p>
-    It doesn’t help that Robert Morris—an influential megachurch pastor who served as a faith advisor to Donald Trump
-    during his first term and was part of Trump’s evangelical advisory ecosystem—was indicted in 2025 on multiple felony
-    counts related to alleged child sexual abuse.
+    Robert Morris—an influential megachurch pastor who served as a faith advisor to Donald Trump during his first term and was part
+    of Trump’s evangelical advisory ecosystem—was indicted in 2025 on multiple felony counts related to alleged child sexual abuse.
   </p>
 
   <p>
@@ -698,13 +833,11 @@
     Trump has not been accused of involvement in the alleged abuse.
   </p>
 
-  <h3 class="subhead">Why critics say this “doesn’t help”</h3>
+  <h3 class="subhead">Why critics consider this relevant</h3>
 
   <p>
-    It doesn’t help Trump’s public image that a spiritual adviser associated with his administration now faces serious
-    child-abuse charges. Critics argue that repeated proximity to individuals later charged or convicted of sexual crimes—
-    particularly involving minors—raises questions about judgment, vetting, and the moral authority claimed by Trump’s
-    evangelical support base.
+    This is included because it is frequently cited in arguments about judgment, vetting, and the moral authority claimed by Trump’s
+    evangelical support base: a spiritual adviser associated with Trump now faces serious child-abuse charges.
   </p>
 
   <p>
@@ -729,10 +862,10 @@
 </section>
 
 <section class="card" id="andrew-tristan-tate">
-  <span class="tag">It doesn’t help</span>
+  <span class="tag">Critics argue this is concerning</span>
   <span class="tag">Recent associations</span>
   <span class="tag">Charges</span>
-  <h2>It doesn’t help: Andrew and Tristan Tate, serious charges, and Trump-family adjacency</h2>
+  <h2>Andrew and Tristan Tate, serious charges, and Trump-family adjacency</h2>
 
   <div class="media">
     <figure>
@@ -750,9 +883,8 @@
   </div>
 
   <p>
-    It doesn’t help that Andrew Tate and his brother Tristan Tate—online influencers charged in Romania with
-    rape, human trafficking, and forming an organized criminal group—have formed public-facing associations
-    with members of the Trump family in recent years.
+    Andrew Tate and his brother Tristan Tate—online influencers charged in Romania with rape, human trafficking, and
+    forming an organized criminal group—have formed public-facing associations with members of the Trump family in recent years.
   </p>
 
   <p>
@@ -824,13 +956,12 @@
     <li><a href="https://x.com/ApostateProphet/status/1895199327158665533?s=20" target="_blank" rel="noopener">X.com: clip circulating statements about “lover boy”/pimping framing (social media link)</a></li>
   </ul>
 
-  <h3 class="subhead">Why critics say this “doesn’t help”</h3>
+  <h3 class="subhead">Why critics consider this relevant</h3>
 
   <p>
-    It doesn’t help Trump’s broader image that figures charged with violent sexual crimes present themselves
-    as ideological allies and receive acknowledgment or engagement from Trump-family members.
-    Supporters argue that public figures cannot control who expresses admiration for them, while critics argue
-    that reciprocal engagement legitimizes harmful actors.
+    The concern raised here is reputational and political: figures facing serious trafficking and rape charges presenting themselves
+    as allies, and receiving engagement or validation from Trump-family figures.
+    Supporters respond that public figures cannot control who expresses admiration for them; others argue that reciprocal engagement can legitimize harmful actors.
   </p>
 
   <p>
@@ -881,11 +1012,11 @@
 
 
       <section class="card" id="alan-dershowitz">
-  <span class="tag">It doesn’t help</span>
+  <span class="tag">Critics argue this is concerning</span>
   <span class="tag">Legal advisers</span>
   <span class="tag">Epstein files</span>
 
-  <h2>It doesn’t help: Alan Dershowitz, Epstein allegations, and close ties to Trump</h2>
+  <h2>Alan Dershowitz, Epstein allegations, and close ties to Trump</h2>
 
   <div class="media">
     <figure>
@@ -899,10 +1030,8 @@
   </div>
 
   <p>
-    It doesn’t help that Alan Dershowitz—one of Donald Trump’s most prominent legal defenders—appears extensively
-    in Jeffrey Epstein–related court records and public reporting. Dershowitz served as a key legal advisor to Trump
-    and was part of Trump’s defense team during his first impeachment trial in 2020, frequently appearing in media
-    as a vocal supporter.
+    Alan Dershowitz—one of Donald Trump’s most prominent legal defenders—appears extensively in Epstein-related court records and public reporting.
+    He served as a key legal advisor to Trump and was part of Trump’s defense team during his first impeachment trial in 2020.
   </p>
 
   <h3 class="subhead">Epstein-related allegations and records</h3>
@@ -925,13 +1054,12 @@
     Epstein was under federal investigation.
   </p>
 
-  <h3 class="subhead">Why critics say this “doesn’t help”</h3>
+  <h3 class="subhead">Why critics consider this relevant</h3>
 
   <p>
-    Critics argue that Dershowitz’s proximity to Epstein—combined with his later role as one of Trump’s most visible
-    legal champions—adds to concerns about the broader ecosystem of elites surrounding Trump who intersected with
-    Epstein. While association alone is not proof of wrongdoing, skeptics contend that repeated overlap between
-    Trump allies and Epstein-linked figures raises legitimate questions about judgment and accountability.
+    This section is included because Dershowitz’s proximity to Epstein, combined with his later role as one of Trump’s most visible legal champions,
+    is frequently cited in arguments about the broader ecosystem of elites around Trump who intersected with Epstein.
+    Association alone is not proof of wrongdoing, but repeated overlap is commonly treated as a judgment/accountability issue.
   </p>
 
   <p>
@@ -965,11 +1093,11 @@
 </section>
 
 <section class="card" id="bannon">
-  <span class="tag">It doesn’t help</span>
+  <span class="tag">Critics argue this is concerning</span>
   <span class="tag">Epstein files</span>
   <span class="tag">Associates</span>
 
-  <h2>It doesn’t help: Steve Bannon controversies and Epstein-file communications</h2>
+  <h2>Steve Bannon controversies and Epstein-file communications</h2>
 
   <div class="media">
     <figure>
@@ -983,9 +1111,8 @@
   </div>
 
   <p>
-    It doesn’t help that Steve Bannon—Donald Trump’s former chief White House strategist and a central figure in
-    Trump’s 2016 campaign—appears in reporting connected to both disturbing personal allegations and extensive
-    communications with Jeffrey Epstein after Epstein’s 2008 conviction.
+    Steve Bannon—Donald Trump’s former chief White House strategist and a central figure in Trump’s 2016 campaign—appears in reporting connected to
+    both extensive communications with Jeffrey Epstein after Epstein’s 2008 conviction and additional scandal narratives.
   </p>
 
   <h3 class="subhead">Epstein-file communications</h3>
@@ -999,9 +1126,8 @@
 
   <p>
     Reporting also indicates Bannon discussed logistical assistance with Epstein, including references to using
-    Epstein’s private aircraft. Critics argue that Bannon’s willingness to engage closely with Epstein—despite
-    Epstein’s widely known criminal history—raises serious questions about judgment and elite networking norms.
-    Supporters counter that communication alone does not imply criminal involvement.
+    Epstein’s private aircraft. For many readers, Bannon’s willingness to engage closely with Epstein—despite Epstein’s widely known criminal history—
+    raises questions about judgment and elite networking norms. Supporters counter that communication alone does not imply criminal involvement.
   </p>
 
   <h3 class="subhead">Florida house allegations (unproven)</h3>
@@ -1019,13 +1145,11 @@
     contribute to the broader perception critics describe as “everything around this ecosystem feels compromised.”
   </p>
 
-  <h3 class="subhead">Why critics say this “doesn’t help”</h3>
+  <h3 class="subhead">Why critics consider this relevant</h3>
 
   <p>
-    Critics argue that the combination of Epstein communications, alleged attempts to manage Epstein’s reputation,
-    and unresolved scandal narratives around Bannon reinforce concerns about a culture of moral indifference among
-    powerful figures surrounding Trump. Supporters respond that none of this constitutes proof of wrongdoing and
-    reflects guilt-by-association reasoning.
+    The concern here is the combination of Epstein communications, alleged attempts to manage Epstein’s reputation, and unresolved scandal narratives around Bannon.
+    Supporters respond that none of this constitutes proof of wrongdoing and that it reflects guilt-by-association reasoning.
   </p>
 
   <div class="sources-title">Sources</div>
@@ -1089,7 +1213,7 @@
 
         <p>
           Melania Trump’s modeling history included provocative published work that resurfaced during the 2016 campaign.
-          This point is often raised in “values vs image” debates, not as an allegation of illegality.
+          This point is often raised in “values vs image” debates, not as an allegation of illegality.  She is the first First-Lady to have produced publically accessable pornographic images, breaking the mold of what was previously considered to be class and morality.
         </p>
 
         <div class="sources-title">Sources</div>
@@ -1099,11 +1223,11 @@
       </section>
 
       <section class="card" id="brett-ratner">
-        <span class="tag">It doesn’t help</span>
+        <span class="tag">Critics argue this is concerning</span>
         <span class="tag">Associates</span>
         <span class="tag">Epstein files</span>
         <span class="tag">Media</span>
-        <h2>It doesn’t help: Brett Ratner, the Melania documentary, and overlap with Trump- and Epstein-adjacent networks</h2>
+        <h2>Brett Ratner, the Melania documentary, and overlap with Trump- and Epstein-adjacent networks</h2>
 
         <div class="media">
           <figure>
@@ -1117,8 +1241,8 @@
         </div>
 
         <p>
-          It doesn’t help that Brett Ratner—whose Hollywood career stalled after multiple sexual-misconduct allegations in 2017 (which he has denied)—
-          returned to prominence by directing and producing a documentary centered on Melania Trump in the lead-up to Donald Trump’s second inauguration.
+          Brett Ratner—whose Hollywood career stalled after multiple sexual-misconduct allegations in 2017 (which he has denied)—returned to prominence
+          by directing and producing a documentary centered on Melania Trump in the lead-up to Donald Trump’s second inauguration.
         </p>
 
         <h3 class="subhead">Documentary project (reported)</h3>
@@ -1151,14 +1275,14 @@
         <p>
           Ratner has also been discussed online in connection with document/photo releases commonly referred to as the “Epstein files,” including images and
           email/social-circle references. <b>No allegation of wrongdoing</b> is asserted here based on those mentions; the point is the recurring pattern of
-          elite-network overlap that critics argue “doesn’t help” optics.
+          elite-network overlap that people cite as concerning.
         </p>
 
-        <h3 class="subhead">Why critics say this “doesn’t help”</h3>
+        <h3 class="subhead">Why critics consider this relevant</h3>
 
         <p>
-          Critics argue that Ratner’s return via a Trump-family project, paired with business ties to Trump-era figures and periodic Epstein-file adjacency,
-          reinforces the perception that reputational exile is reversible for well-connected insiders—especially in media ecosystems that reward loyalty and access.
+          Ratner’s return via a Trump-family project, paired with business ties to Trump-era figures and periodic Epstein-file adjacency, is often cited as an example
+          of reputational exile being reversible for well-connected insiders—especially in media ecosystems that reward loyalty and access.
         </p>
 
         <div class="sources-title">Sources</div>
@@ -1207,22 +1331,9 @@
           that included prostitution services, later cited as an early source of family wealth.
         </p>
 
+        
         <p>
-          <b>Scope and uncertainty:</b> Historical accounts generally describe Trump’s grandfather as operating restaurants and hotels in red-light districts where prostitution
-          and gambling were common. The strongest documentary evidence typically cited is circumstantial (location, ads, and contemporary descriptions), and some popular
-          claims circulate in exaggerated form.
-        </p>
-
-        <p>
-          <b>Klondike-era business model:</b> Snopes and other summaries of the historical record describe Frederick Trump as opening and operating the Arctic Restaurant and Hotel
-          (also described as “New Arctic”) during the Klondike Gold Rush period, and note contemporaneous/near-contemporaneous accounts suggesting that prostitution may
-          have occurred there, alongside liquor sales and other vice economy activity typical of boomtowns.
-        </p>
-
-        <p>
-          <b>Bottom line:</b> The best-supported version of the claim is that Frederick Trump ran successful hospitality businesses in vice-heavy districts and may have profited
-          indirectly from prostitution being available on or near the premises; the more extreme “pimp/opium den” narratives are not supported by the available evidence.
-        </p>
+          <b>Bottom line:</b> if Trumps grandfather was in the business of prostitution, would it be surprising if Donald Trump himself inherited that business model? 
 
         <div class="sources-title">Sources</div>
         <ul>
@@ -1232,11 +1343,11 @@
       </section>
 
       <section class="card" id="vince-mcmahon">
-  <span class="tag">It doesn’t help</span>
+  <span class="tag">Critics argue this is concerning</span>
   <span class="tag">WWE</span>
   <span class="tag">Associations</span>
 
-  <h2>It doesn’t help: Vince McMahon, WWE showmanship, political alliance—and McMahon’s own misconduct allegations</h2>
+  <h2>Vince McMahon, WWE showmanship, political alliance—and McMahon’s own misconduct allegations</h2>
 
   <div class="media">
     <figure>
@@ -1250,7 +1361,7 @@
   </div>
 
   <p>
-    It doesn’t help that Donald Trump has had a long personal and professional relationship with WWE executive Vince McMahon that blends
+    Donald Trump has had a long personal and professional relationship with WWE executive Vince McMahon that blends
     entertainment branding with political messaging. Trump’s Atlantic City properties were promoted in connection with major WWE events
     in the late 1980s, and Trump later participated directly in WWE storylines—including the widely covered 2007 “Battle of the Billionaires”
     angle with McMahon. Commentators have argued that professional-wrestling style spectacle (villains, heroes, crowd work, kayfabe-adjacent
@@ -1258,17 +1369,17 @@
   </p>
 
   <p>
-    It also doesn’t help that the relationship is not just cultural but financial and political. Reporting has described donations connected to
+    Reporting has also described the relationship as not just cultural but financial and political. Reporting has described donations connected to
     the McMahon family to Trump-aligned efforts in the past, and Trump appointed Linda McMahon (Vince McMahon’s spouse and a longtime Trump ally)
     to senior government roles. Linda McMahon served as Administrator of the Small Business Administration in Trump’s first term and was later
     nominated and confirmed as Secretary of Education in Trump’s second term.
   </p>
 
   <p>
-    Finally, it doesn’t help that Vince McMahon himself has faced a long-running series of misconduct allegations and legal disputes connected to WWE,
+    Vince McMahon himself has faced a long-running series of misconduct allegations and legal disputes connected to WWE,
     including (a) reports of undisclosed settlement payments and internal investigations, and (b) civil lawsuits alleging serious sexual misconduct and coercion.
-    These matters remain contested in court and in public reporting; they are not criminal convictions. Still, critics argue that the proximity of Trumpworld to
-    figures repeatedly accused of sexual misconduct contributes to the broader “pattern” concerns driving public distrust.
+    These matters remain contested in court and in public reporting; they are not criminal convictions. Many readers include this as part of a broader “pattern” concern
+    about proximity to figures repeatedly accused of sexual misconduct.
   </p>
 
   <div class="sources-title">Sources</div>
@@ -1306,11 +1417,11 @@
 </section>
 
       <section class="card" id="allegations-overview">
-  <span class="tag">It doesn’t help</span>
+  <span class="tag">Critics argue this is concerning</span>
   <span class="tag">Allegations</span>
   <span class="tag">Legal record</span>
 
-  <h2>It doesn’t help: The full landscape of sexual-misconduct allegations against Donald Trump</h2>
+  <h2>Trump on trial: The full landscape of sexual-misconduct allegations against Donald Trump</h2>
 
   <p>
     This section consolidates publicly reported allegations of sexual misconduct made against Donald J. Trump over several decades.
@@ -1319,9 +1430,9 @@
   </p>
 
   <p>
-    The purpose of presenting the full scope is contextual: critics argue that the volume, time span, and recurring themes
+    The purpose of presenting the full scope is contextual: the volume, time span, and recurring themes
     (“unwanted touching,” “forced kissing,” pageant-related boundary violations, and later defamation findings)
-    are relevant to public trust—especially in light of Epstein-adjacent concerns discussed elsewhere on this page.
+    are frequently cited as relevant to public trust—especially in light of Epstein-adjacent concerns discussed elsewhere on this page.
   </p>
 
   <div class="sources-title">1970s–1980s: Early allegations</div>
@@ -1395,7 +1506,7 @@
   <p class="note">
     <em>
       This section is intentionally exhaustive rather than selective. Supporters may dispute interpretations or credibility;
-      critics argue that repetition, corroboration patterns, and court outcomes are themselves relevant facts.
+      others argue that repetition, corroboration patterns, and court outcomes are themselves relevant facts.
     </em>
   </p>
 </section>
@@ -1405,7 +1516,7 @@
   <span class="tag">Criminal case</span>
   <span class="tag">Court record</span>
 
-  <h2>It doesn’t help: Donald Trump’s criminal convictions</h2>
+  <h2>Donald Trump’s criminal convictions</h2>
 
   <p>
     This section summarizes the criminal convictions of Donald J. Trump as they stand as of February 2026.
@@ -1422,11 +1533,12 @@
   </p>
 
   <p>
-    The charges stemmed from a scheme to conceal a <b>$130,000 payment</b> made to adult film actress
+    The charges stemmed from a scheme to conceal a <b>$130,000 payment</b> made to porno star
     Stormy Daniels shortly before the 2016 presidential election. Prosecutors demonstrated that Trump,
     through his then-attorney Michael Cohen, reimbursed the payment using a series of checks and internal
     accounting entries falsely labeled as “legal expenses.” The state argued—and the jury agreed—that
     these falsifications were intended to conceal an unlawful effort to influence the election.
+    What concerns moral critics concerned Trump is complicit with Epstein, is the additional involvement in scandals of sexual misconduct/ infidelity.
   </p>
 
   <h3 class="subhead">Trial details</h3>
@@ -1499,8 +1611,8 @@
 
 
       <section class="card" id="kid-rock">
-        <span class="tag">It doesn’t help</span>
-        <h2>It doesn’t help: Trump’s closeness with Kid Rock (and those lyrics)</h2>
+        <span class="tag">Critics argue this is concerning</span>
+        <h2>Trump’s closeness with Kid Rock (and those lyrics)</h2>
 
         <div class="media">
           <figure>
@@ -1518,11 +1630,13 @@
         </div>
 
         <p>
-          It doesn’t help that Trump counts rock musician Kid Rock among his friends and has praised him publicly.
+          Trump counts rock musician Kid Rock among his friends and has praised him publicly.
           This association drew criticism when lyrics resurfaced from a 2001 Kid Rock song boasting
           <em>“I like ’em underage, see… Some say that’s statutory, but I say it’s mandatory.”</em>
           Trump’s warm endorsement of Kid Rock—despite those lyrics—adds to the broader discomfort some people already feel about the
-          environments Trump chooses to normalize.
+          environments Trump chooses to normalize.  The question remains, why does it seem like all of his best friends are loud and proud pedophiles?  And what does that suggest about him?  
+          Critics cite the troubling pattern of Trump surrounding himself with individuals who have histories of inappropriate behavior or associations with minors.
+          As the old saying goes, birds of a feather flock together, glares the public in the face.
         </p>
 
         <div class="sources-title">Sources</div>
@@ -1533,8 +1647,8 @@
       </section>
 
       <section class="card" id="casablancas">
-        <span class="tag">It doesn’t help</span>
-        <h2>It doesn’t help: Pageant ties with John Casablancas and teen models</h2>
+        <span class="tag">Critics argue this is concerning</span>
+        <h2>Pageant ties with John Casablancas and teen models</h2>
 
         <div class="media">
           <figure>
@@ -1548,22 +1662,56 @@
         </div>
 
         <p>
-          It doesn’t help that Trump partnered with John Casablancas—the Elite Model Management founder later accused of exploiting underage models—
+          Trump partnered with John Casablancas—the Elite Model Management founder later accused of exploiting underage models—
           around teen beauty-pageant environments. Reporting describes Trump sponsoring and judging Casablancas’s “Look of the Year” contest, including
           events involving contestants as young as 14 and social access to powerful men.
-          Even if a given setting doesn’t prove wrongdoing by Trump, critics argue that repeatedly choosing those environments, and those partners,
-          doesn’t help.
+          Even if a given setting doesn’t prove wrongdoing by Trump, some readers consider repeatedly choosing those environments and partners to be concerning.
         </p>
+
+        <h3 class="subhead">Pageants and model-contest allegations: dressing rooms, recorded remarks, and related reporting</h3>
+
+        <p>
+          <b>Recorded remarks (Howard Stern, 2005):</b> In 2005 audio discussed in multiple outlets, Trump described going backstage at pageants he owned,
+          saying contestants were sometimes “standing there with no clothes” and that he could enter because he was the owner and was “inspecting.”
+        </p>
+
+        <p>
+          <b>Contestant accounts:</b> Multiple former Miss USA and Miss Teen USA contestants have described Trump entering dressing-room areas while contestants were undressed.
+          Coverage includes accounts from the 2001 Miss USA rehearsal context and reporting on the 1997 Miss Teen USA allegations.
+        </p>
+
+        <p>
+          <b>1991 “Look of the Year” (Guardian reporting):</b> The Guardian reported on Elite Model Management’s “Look of the Year” contests and related allegations,
+          including that contestants were often teenagers (with reporting citing an average age around 15 in a 1992 Fox documentary), and describing allegations of exploitation
+          in the wider ecosystem surrounding the contest and organizers. Trump was a judge in 1991.
+        </p>
+
+        <p>
+          <b>Links to additional claims:</b> Several widely shared social-media posts circulate additional first-person claims about Trump and pageants.
+          Where these are not backed by mainstream reporting in the link itself, they are included as social-media references for readers to evaluate.
+        </p>
+
+        <ul>
+          <li><a href="https://x.com/NotAvgLiberal/status/1919865527909916806?s=20" target="_blank" rel="noopener">X.com: Howard Stern clip post (social media link)</a></li>
+          <li><a href="https://x.com/adrakwalichai1/status/2018075911355007334?s=20" target="_blank" rel="noopener">X.com: post summarizing Guardian’s 1991 “Look of the Year” reporting (social media link)</a></li>
+          <li><a href="https://x.com/ELMObrokenWings/status/2018959515241079194?s=20" target="_blank" rel="noopener">X.com: pageant-model claim post (social media link)</a></li>
+          <li><a href="https://x.com/MeidasTouch/status/1946321930266763629?s=20" target="_blank" rel="noopener">X.com: additional pageant-related post (social media link)</a></li>
+        </ul>
 
         <div class="sources-title">Sources</div>
         <ul>
           <li><a href="https://www.theguardian.com/us-news/2020/mar/14/teen-models-powerful-men-when-donald-trump-hosted-look-of-the-year" target="_blank" rel="noopener">The Guardian (Mar 14, 2020): Trump hosted “Look of the Year”</a></li>
+          <li><a href="https://www.theguardian.com/us-news/2016/oct/12/donald-trump-miss-usa-dressing-room-2001-rehearsal" target="_blank" rel="noopener">The Guardian (Oct 12, 2016): Miss USA contestant account + Stern-audio quote excerpt</a></li>
+          <li><a href="https://www.cnn.com/2016/10/08/politics/trump-on-howard-stern" target="_blank" rel="noopener">CNN (Oct 8, 2016): reporting on Trump’s Howard Stern remarks (includes pageant backstage quote)</a></li>
+          <li><a href="https://www.politifact.com/article/2016/oct/18/allegations-about-donald-trump-and-miss-teen-usa-c/" target="_blank" rel="noopener">PolitiFact (Oct 18, 2016): summary of Miss Teen USA dressing-room allegations and evidentiary limits</a></li>
+          <li><a href="https://www.cbsnews.com/news/trump-walked-in-pageant-dressing-rooms-2016/" target="_blank" rel="noopener">CBS News: pageant dressing-room accounts</a></li>
+          <li><a href="https://www.cbsnews.com/news/more-unearthed-footage-trump-comments-women-pageant-audio-2016/" target="_blank" rel="noopener">CBS News: audio and pageant-related comments</a></li>
         </ul>
       </section>
 
       <section class="card" id="vance-ambrosia-blood">
-        <span class="tag">It doesn’t help</span>
-        <h2>It doesn’t help: “Ambrosia,” blood-transfusion culture, and Epstein-adjacent weirdness</h2>
+        <span class="tag">Critics argue this is concerning</span>
+        <h2>“Ambrosia,” blood-transfusion culture, and Epstein-adjacent weirdness</h2>
 
         <div class="media">
           <figure>
@@ -1573,9 +1721,9 @@
         </div>
 
         <p>
-          It doesn’t help that J.D. Vance is discussed in the same online orbit as Peter Thiel’s interest in a company called Ambrosia, known for marketing
-          “young plasma” transfusions for anti-aging. And it doesn’t help that Epstein’s world is filled with bizarre elite medical obsession themes in the public
-          imagination, making “blood” references in any related scandal feel instantly darker to the average reader—even when the connections are indirect.
+          J.D. Vance is sometimes discussed online in the same orbit as Peter Thiel’s interest in a company called Ambrosia, known for marketing
+          “young plasma” transfusions for anti-aging. The reason this shows up in Epstein-adjacent discourse is largely tonal: “blood” references and elite
+          biohacking themes read as darker to many readers even when the connections are indirect.
         </p>
 
         <div class="sources-title">Sources</div>
@@ -1588,8 +1736,8 @@
       </section>
 
       <section class="card" id="epstein-staff-crossovers">
-        <span class="tag">It doesn’t help</span>
-        <h2>It doesn’t help: Alexander Acosta’s Epstein Plea Deal and Trump’s Administration</h2>
+        <span class="tag">Critics argue this is concerning</span>
+        <h2>Alexander Acosta’s Epstein Plea Deal and Trump’s Administration</h2>
 
         <div class="media">
           <figure>
@@ -1599,15 +1747,14 @@
         </div>
 
         <p>
-          It doesn’t help that critics point to institutional crossover between Epstein-linked decision-makers and Trump’s administration or orbit,
-          most prominently via Alexander Acosta’s role in Epstein’s plea deal before becoming Trump’s Labor Secretary. Even when the connection is “administrative”
-          rather than personal, the optics are brutal: the most famous “why was Epstein protected?” plea deal sits adjacent to Trump’s cabinet.
+          This section documents an institutional crossover people frequently cite: Alexander Acosta approved Epstein’s 2007–2008 non-prosecution agreement,
+          and Trump later appointed Acosta as U.S. Labor Secretary. Even when the connection is administrative rather than personal, the optics are a frequent
+          point of criticism because the most scrutinized lenient plea deal in the Epstein story sits adjacent to Trump’s cabinet.
         </p>
 
         <p>
-          One of the most controversial links between Trump’s orbit and Epstein was through Acosta, whom Trump appointed as U.S. Labor Secretary in 2017.
-          Acosta had served as the U.S. Attorney for Southern Florida in 2007–2008 and approved Epstein’s non-prosecution agreement for federal sex crime charges.
-          In 2019, amid renewed scrutiny after Epstein’s re-arrest, Acosta resigned.
+          Acosta, appointed by Trump as U.S. Labor Secretary in 2017, previously served as the U.S. Attorney for Southern Florida in 2007–2008, where he approved
+          Epstein’s non-prosecution agreement for federal sex-crime charges. In 2019, amid renewed scrutiny after Epstein’s re-arrest, Acosta resigned.
         </p>
 
         <div class="sources-title">Sources</div>
@@ -1618,8 +1765,8 @@
       </section>
 
       <section class="card" id="devils-advocate">
-        <span class="tag">It doesn’t help</span>
-        <h2>It doesn’t help: “The Devil’s Advocate” filmed in Trump’s penthouse</h2>
+        <span class="tag">Critics argue this is concerning</span>
+        <h2>“The Devil’s Advocate” filmed in Trump’s penthouse</h2>
 
         <div class="media">
           <figure>
@@ -1637,9 +1784,8 @@
         </div>
 
         <p>
-          It doesn’t help that pop culture leaned into the symbolism: the film <em>The Devil’s Advocate</em> used Trump’s own penthouse for scenes tied to
-          Al Pacino’s character (the Devil). That’s not evidence of anything criminal, but it’s the kind of cultural detail that critics cite as “the vibe is off”
-          when they talk about why Trump triggers suspicion.
+          A recurring pop-culture note: the film <em>The Devil’s Advocate</em> used Trump’s own penthouse for scenes tied to Al Pacino’s character (the Devil).
+          This is not evidence of anything criminal; it’s included because it is a widely cited “vibe” in how people percieve Trump’s cultural symbolism.
         </p>
 
         <div class="sources-title">Sources</div>
@@ -1651,8 +1797,8 @@
       </section>
 
       <section class="card" id="ivanka-comments">
-        <span class="tag">It doesn’t help</span>
-        <h2>It doesn’t help: Trump’s comments about Ivanka</h2>
+        <span class="tag">Critics argue this is concerning</span>
+        <h2>Trump’s comments about Ivanka</h2>
 
         <div class="media">
           <figure>
@@ -1670,9 +1816,9 @@
         </div>
 
         <p>
-          It doesn’t help that Trump has repeatedly made remarks about his daughter Ivanka that many people interpret as sexualizing or objectifying.
-          Critics argue that even if framed as “jokes,” the pattern is abnormal and reinforces discomfort, especially in a broader context where youth/sexual
-          boundaries are already central to the Epstein story.
+          Trump has repeatedly made remarks about his daughter Ivanka that many people interpret as sexualizing or objectifying.
+          Even when framed as jokes, the pattern is a frequent source of discomfort—especially in a broader context where youth/sexual boundaries are already
+          central to Epstein-related public scrutiny.
         </p>
 
         <div class="sources-title">Sources</div>
@@ -1684,8 +1830,8 @@
       </section>
 
      <section class="card" id="erika-kirk-otto-busher">
-  <span class="tag">It doesn’t help</span>
-  <h2>It doesn’t help: Erika Kirk (Frantzve), Romania charity work, and the Otto Busher association (rumor + allegation context)</h2>
+  <span class="tag">Critics argue this is concerning</span>
+  <h2>Erika Kirk (Frantzve), Romania charity work, and the Otto Busher association (rumor + allegation context)</h2>
 
   <div class="notice tight">
     <b>Disclaimer:</b> This section summarizes a cluster of <b>online claims</b>, <b>whistleblower allegations</b>, and <b>speculation by critics</b>.
@@ -1785,8 +1931,8 @@
 </section>
 
       <section class="card" id="casino-bankruptcies-detailed">
-  <span class="tag">It doesn’t help</span>
-  <h2>It doesn’t help: How Trump personally profited while his Atlantic City casinos went bankrupt</h2>
+  <span class="tag">Critics argue this is concerning</span>
+  <h2>How Trump personally profited while his Atlantic City casinos went bankrupt: reflecting on Trump's ethical aura or lack thereof</h2>
 
   <div class="media">
     <figure>
@@ -1796,7 +1942,7 @@
   </div>
 
   <p>
-    It doesn’t help that Donald Trump repeatedly cited his Atlantic City casino bankruptcies as evidence of business savvy,
+    Donald Trump repeatedly cited his Atlantic City casino bankruptcies as evidence of business savvy,
     while detailed reporting shows that <b>Trump personally made substantial money</b> even as the casino companies themselves
     collapsed, investors lost billions, contractors went unpaid, and thousands of workers were affected.
   </p>
@@ -1906,8 +2052,8 @@
 
 
       <section class="card" id="trump-university-crypto">
-        <span class="tag">It doesn’t help</span>
-        <h2>It doesn’t help: Trump University and crypto controversies</h2>
+        <span class="tag">Critics argue this is concerning</span>
+        <h2>Trump University and crypto controversies</h2>
 
         <div class="media">
           <figure>
@@ -1917,48 +2063,53 @@
         </div>
 
         <p>
-          It doesn’t help that Trump University ended in a major settlement after fraud allegations, and it doesn’t help that critics argue
-          newer crypto ventures look like opportunistic cash-grabs. Supporters may view these as aggressive business moves, while critics view them
-          as part of a pattern: hype, extraction, and leaving others holding the bag.
+          This card groups together two clusters of controversy: Trump University (fraud allegations that ended in a major settlement) and more recent Trump-aligned
+          crypto ventures (scrutiny over pay-for-access optics, conflicts of interest, and marketing-driven monetization).
+          <b>Interpretive context:</b> Even when individual actions are legal or contested, many readers treat “access + branding + money flow” as a red flag because it blurs
+          private gain and public office.
         </p>
+
+        <h3 class="subhead">Key points (fast scan)</h3>
+
+        <ul>
+          <li><b>Trump University:</b> NY AG alleged an unlicensed “university” used a funnel from free events to paid products, including “Elite” packages priced <b>$10,000–$35,000</b>.</li>
+          <li><b>Resolution:</b> Trump agreed to a <b>$25 million</b> settlement without admitting wrongdoing; courts later approved/cleared the settlement process.</li>
+          <li><b>$TRUMP memecoin:</b> The Guardian reported a May 2025 dinner/White House tour pitched at top purchasers, and estimated about <b>$148 million</b> generated, including from <b>anonymous/foreign</b> buyers.</li>
+          <li><b>WLF:</b> The Guardian reported on World Liberty Financial promotion and described watchdog/scholar warnings about deregulatory moves compounding perceived conflicts.</li>
+          <li><b>$MELANIA:</b> WIRED summarized a class-action filing alleging a repeatable memecoin pump-and-dump playbook; the filing <b>did not allege wrongdoing</b> by Melania Trump.</li>
+        </ul>
 
         <h3 class="subhead">Trump University: marketing claims, pricing tiers, and fraud allegations</h3>
 
         <p>
-          Trump University (also known as the Trump Entrepreneur Institute) marketed itself as a real-estate education program that promised access to Trump’s
-          “secrets” and to “handpicked” experts. The New York Attorney General alleged it was an <b>unlicensed</b> institute that used deceptive advertising to drive people
-          into free workshops and then pressure them into increasingly expensive products.
+          Trump University (also known as the Trump Entrepreneur Institute) marketed itself as real-estate education promising access to Trump’s “secrets” and to
+          “handpicked” experts. The New York Attorney General alleged it was an <b>unlicensed</b> institute that used deceptive marketing to drive people into free workshops,
+          then pressure them into increasingly expensive products.
         </p>
 
-        <p>
-          <b>Alleged bait-and-switch structure (NY AG):</b> The NY AG described a funnel where attendees were steered from a free workshop into a $1,495 three-day seminar,
-          and then pitched “Elite” mentorship packages priced from <b>$10,000 to $35,000</b>. The filing alleged that instructors encouraged attendees to raise credit-card limits
-          during breaks, and that the “handpicked” instructor claims were false.
-        </p>
+        <ul>
+          <li><b>Alleged funnel (NY AG):</b> free workshop → <b>$1,495</b> three-day seminar → “Elite” mentorship packages priced <b>$10,000–$35,000</b>.</li>
+          <li><b>Alleged sales pressure (NY AG):</b> instructors encouraged attendees to raise credit-card limits during breaks.</li>
+          <li><b>Alleged branding/support claims (NY AG):</b> “university” branding without required charter/license in New York, university-like seal/certificates, and promised support many customers said they did not receive.</li>
+          <li><b>Restitution allegations (NY AG):</b> restitution sought for <b>5,000+</b> consumers and alleged losses of <b>$40M+</b>.</li>
+        </ul>
 
         <p>
-          <b>Alleged misrepresentations (NY AG):</b> The NY AG alleged Trump University used “university” branding without the required charter/license in New York,
-          used a university-like seal and completion certificates, and promised specific training/support that many customers said they did not receive.
-          The NY AG sought restitution for <b>more than 5,000</b> consumers and alleged losses of <b>over $40 million</b>.
-        </p>
-
-        <p>
-          <b>Settlement and court outcomes:</b> Trump ultimately agreed to a <b>$25 million</b> settlement to resolve multiple cases without admitting wrongdoing.
-          Federal reporting later described a court approval process and an appeals-court decision allowing the settlement to move forward.
+          <b>Settlement and court outcomes:</b> Trump agreed to a <b>$25 million</b> settlement to resolve multiple cases without admitting wrongdoing. Later coverage described
+          court approval and an appeals-court decision allowing the settlement to proceed.
         </p>
 
         <h3 class="subhead">Crypto: $TRUMP memecoin “pay-for-access” optics and regulatory/conflict concerns</h3>
 
         <p>
-          In Trump’s second term, critics argue that Trump-aligned crypto ventures create conflicts of interest because they blend presidential access, branding, and
-          policy decisions affecting crypto oversight. The Guardian reported that a May 2025 dinner and White House tour for top purchasers of the $TRUMP memecoin
-          was designed to spur purchases and generated about <b>$148 million</b>, including from <b>anonymous and foreign</b> buyers.
+          The core concern raised in reporting is conflict-of-interest optics: presidential access, branding, and policy decisions affecting crypto oversight occurring in the
+          same window as private crypto profit.
         </p>
 
-        <p>
-          The Guardian also reported that Trump’s family and close allies promoted a separate crypto venture, World Liberty Financial (WLF), and described watchdog and
-          scholar warnings that deregulatory moves (at DOJ/SEC and elsewhere) compound perceived conflicts when paired with personal crypto profit.
-        </p>
+        <ul>
+          <li><b>$TRUMP dinner/tour (Guardian reporting):</b> A May 2025 dinner and White House tour for top purchasers was described as designed to spur purchases and to have generated about <b>$148M</b>, including from <b>anonymous/foreign</b> buyers.</li>
+          <li><b>WLF (Guardian reporting):</b> Coverage described World Liberty Financial promotion and cited watchdog/scholar warnings that deregulatory moves (DOJ/SEC and elsewhere) compound perceived conflicts when paired with personal crypto profit.</li>
+        </ul>
 
         <h3 class="subhead">$MELANIA: lawsuit allegations about pump-and-dump mechanics (as reported)</h3>
 
@@ -2024,8 +2175,8 @@
       </section>
 
       <section class="card" id="tabloids-pageants">
-        <span class="tag">It doesn’t help</span>
-        <h2>It doesn’t help: Tabloids, pageants, and “catch-and-kill” politics</h2>
+        <span class="tag">Critics argue this is concerning</span>
+        <h2>Tabloids, pageants, and “catch-and-kill” politics</h2>
 
         <div class="media">
           <figure>
@@ -2039,41 +2190,10 @@
         </div>
 
         <p>
-          It doesn’t help that Trump’s brand was built in a tabloid ecosystem, and it doesn’t help that “catch-and-kill” reporting emerged showing
-          a tabloid publisher suppressing stories that could harm Trump. It also doesn’t help that multiple women described Trump walking into pageant
-          dressing rooms, and audio exists of Trump talking about “inspecting” contestants. None of that proves Epstein-style crimes—but critics argue it
-          does show a pattern of blurred boundaries around women and power.
+          This section summarizes reporting on Trump’s long-running relationship with tabloid media ecosystems, including “catch-and-kill” practices—
+          the purchase and suppression of stories that could be damaging.
+          <b>Interpretive context:</b> Readers often find this concerning because it treats reputations as something that can be bought, buried, or weaponized.
         </p>
-
-        <h3 class="subhead">Pageants and model-contest allegations: dressing rooms, recorded remarks, and related reporting</h3>
-
-        <p>
-          <b>Recorded remarks (Howard Stern, 2005):</b> In 2005 audio discussed in multiple outlets, Trump described going backstage at pageants he owned,
-          saying contestants were sometimes “standing there with no clothes” and that he could enter because he was the owner and was “inspecting.”
-        </p>
-
-        <p>
-          <b>Contestant accounts:</b> Multiple former Miss USA and Miss Teen USA contestants have described Trump entering dressing-room areas while contestants were undressed.
-          Coverage includes accounts from the 2001 Miss USA rehearsal context and reporting on the 1997 Miss Teen USA allegations.
-        </p>
-
-        <p>
-          <b>1991 “Look of the Year” (Guardian reporting):</b> The Guardian reported on Elite Model Management’s “Look of the Year” contests and related allegations,
-          including that contestants were often teenagers (with reporting citing an average age around 15 in a 1992 Fox documentary), and describing allegations of exploitation
-          in the wider ecosystem surrounding the contest and organizers. Trump was a judge in 1991.
-        </p>
-
-        <p>
-          <b>Links to additional claims:</b> Several widely shared social-media posts circulate additional first-person claims about Trump and pageants.
-          Where these are not backed by mainstream reporting in the link itself, they are included as social-media references for readers to evaluate.
-        </p>
-
-        <ul>
-          <li><a href="https://x.com/NotAvgLiberal/status/1919865527909916806?s=20" target="_blank" rel="noopener">X.com: Howard Stern clip post (social media link)</a></li>
-          <li><a href="https://x.com/adrakwalichai1/status/2018075911355007334?s=20" target="_blank" rel="noopener">X.com: post summarizing Guardian’s 1991 “Look of the Year” reporting (social media link)</a></li>
-          <li><a href="https://x.com/ELMObrokenWings/status/2018959515241079194?s=20" target="_blank" rel="noopener">X.com: pageant-model claim post (social media link)</a></li>
-          <li><a href="https://x.com/MeidasTouch/status/1946321930266763629?s=20" target="_blank" rel="noopener">X.com: additional pageant-related post (social media link)</a></li>
-        </ul>
 
         <h3 class="subhead">Radar (magazine / Radar Online): Epstein financing and AMI-era Trump ties</h3>
 
@@ -2082,36 +2202,14 @@
           particularly through American Media Inc. (AMI) and its former CEO David Pecker.
         </p>
 
-        <p>
-          <b>Why critics connect Radar to Epstein and Trump’s tabloid ecosystem:</b> Contemporaneous reporting described Jeffrey Epstein as an early financier/investor in <em>Radar</em>
-          magazine’s launch-era financing. Later, the RadarOnline brand sat within AMI’s tabloid portfolio under David Pecker—the same AMI umbrella that published the National
-          Enquirer during the period when “catch-and-kill” operations were documented. In critics’ framing, this creates a single chain of proximity:
-          Epstein near the early Radar brand financing; Pecker/AMI later controlling RadarOnline and the Enquirer; and AMI’s proven willingness to weaponize sensational stories
-          (or suppress them) to shape political outcomes.
-        </p>
-
-        <p>
-          <b>AMI ownership and “catch and kill”:</b> Reporting describes RadarOnline.com as part of AMI’s tabloid portfolio for years. Pecker, a longtime friend of Trump,
-          became central in reporting and court testimony about “catch and kill” practices—buying/suppressing stories to protect Trump.
-        </p>
-
-        <p>
-          <b>Karen McDougal / story suppression:</b> In this framing, Radar Online is discussed as part of the broader AMI ecosystem implicated in the McDougal hush-money narrative.
-        </p>
-
-        <p>
-          <b>Story removal (April 2024):</b> Politico reported that a Radar Online story tied to Karen McDougal was removed from the site during the 2024 hush-money trial news cycle.
-        </p>
-
-        <p>
-          <b>Dylan Howard era:</b> RadarOnline.com was later sold to a group associated with former AMI executive Dylan Howard, a figure discussed in multiple accounts of AMI’s most controversial
-          editorial decisions related to Trump.
-        </p>
-
-        <p>
-          <b>Initial launch financing (2004):</b> Separate from the AMI/Trump tabloid period, contemporaneous reporting described Radar magazine’s financing as including Jeffrey Epstein.
-          This predates RadarOnline’s AMI-era Trump nexus but is included because it places Epstein near the brand’s early funding and social milieu.
-        </p>
+        <ul>
+          <li><b>Launch-era financing (2004):</b> Contemporaneous reporting described Jeffrey Epstein as an early financier/investor in <em>Radar</em> magazine’s financing.</li>
+          <li><b>Later AMI context:</b> The RadarOnline brand sat within AMI’s tabloid portfolio under David Pecker (who became central in reporting and court testimony about “catch and kill”).</li>
+          <li><b>McDougal ecosystem:</b> Radar Online is often discussed as part of the broader AMI ecosystem implicated in the McDougal hush-money narrative.</li>
+          <li><b>Story removal (Politico, Apr 2024):</b> Politico reported a Radar Online story tied to Karen McDougal was removed during the 2024 hush-money trial news cycle.</li>
+          <li><b>Dylan Howard era:</b> RadarOnline.com was later sold to a group associated with former AMI executive Dylan Howard.</li>
+          <li><b>Why this gets linked together (interpretive):</b> Some readers treat the chain—Epstein near early financing, AMI/Pecker later controlling tabloid brands, and documented story suppression—as a single “reputation management” ecosystem.</li>
+        </ul>
 
         <h3 class="subhead">The National Enquirer / AMI: pro-Trump tabloid operations in 2015–2016</h3>
 
@@ -2137,10 +2235,8 @@
         </p>
 
         <p>
-          <b>The broader tabloid incentive problem:</b> Critics argue the AMI/Enquirer model shows how tabloids can operate as political tools: manufacturing scandal,
-          laundering rumors into mass circulation, and pressuring or rewarding sources. In the same ecosystem, “catch-and-kill” functions as the inverse—buying up damaging
-          information to prevent it from being published. In this framing, the issue is not just partisan bias but an information market built around leverage, smears,
-          and selective suppression.
+          <b>The broader tabloid incentive problem:</b> This style of media can operate as a political tool: manufacturing scandal, laundering rumors into mass circulation,
+          and pressuring or rewarding sources. “Catch-and-kill” is the inverse—buying damaging information to prevent publication.
         </p>
 
         <p>
@@ -2155,22 +2251,15 @@
         <h3 class="subhead">Tabloid harassment of Michael Jackson (and why critics cite it)</h3>
 
         <p>
-          Critics also point to how the tabloid ecosystem—especially brands like the National Enquirer—treated celebrity targets such as Michael Jackson.
-          Jackson publicly addressed tabloid rumor culture in his song <em>“Tabloid Junkie”</em>, which is explicitly about media fabrication and sensationalized coverage.
-        </p>
-
-        <p>
-          This matters here because Trump has publicly described Michael Jackson as a friend, and critics argue it illustrates the broader pattern:
-          Trump rose within—and later benefited from—an ecosystem that could both manufacture scandal and bury it.
+          This section also uses Michael Jackson as an example of tabloid dynamics: Jackson publicly addressed rumor culture in his song <em>“Tabloid Junkie”</em>.
+          The reason it is mentioned here is interpretive—Trump has publicly described Jackson as a friend, and some readers see it as illustrating how the tabloid ecosystem
+          can both manufacture scandal and bury it.
         </p>
 
         <div class="sources-title">Sources</div>
         <ul>
           <li><a href="https://www.theguardian.com/us-news/2018/dec/12/national-enquirer-trump-payments-david-pecker-catch-and-kill" target="_blank" rel="noopener">The Guardian: catch-and-kill admission</a></li>
           <li><a href="https://www.theguardian.com/media/2018/aug/06/david-pecker-donald-trump-national-enquirer-profile" target="_blank" rel="noopener">The Guardian: David Pecker profile and relationship with Trump</a></li>
-          <li><a href="https://www.theguardian.com/us-news/2016/oct/12/donald-trump-miss-usa-dressing-room-2001-rehearsal" target="_blank" rel="noopener">The Guardian (Oct 12, 2016): Miss USA contestant account + Stern-audio quote excerpt</a></li>
-          <li><a href="https://www.cnn.com/2016/10/08/politics/trump-on-howard-stern" target="_blank" rel="noopener">CNN (Oct 8, 2016): reporting on Trump’s Howard Stern remarks (includes pageant backstage quote)</a></li>
-          <li><a href="https://www.politifact.com/article/2016/oct/18/allegations-about-donald-trump-and-miss-teen-usa-c/" target="_blank" rel="noopener">PolitiFact (Oct 18, 2016): summary of Miss Teen USA dressing-room allegations and evidentiary limits</a></li>
           <li><a href="https://www.theguardian.com/us-news/2020/mar/14/teen-models-powerful-men-when-donald-trump-hosted-look-of-the-year" target="_blank" rel="noopener">The Guardian (Mar 14, 2020): “Look of the Year” reporting (teen contestants; exploitation allegations around the ecosystem)</a></li>
           <li><a href="https://www.theguardian.com/us-news/2024/apr/24/trump-national-enquirer" target="_blank" rel="noopener">The Guardian (Apr 24, 2024): How the National Enquirer boosted Trump and smeared opponents</a></li>
           <li><a href="https://publicintegrity.org/national-security/alex-finley-analysis/trump-got-the-national-enquirer-to-bury-his-secrets-did-he-do-the-same-with-putin/" target="_blank" rel="noopener">Center for Public Integrity: analysis of the Trump/Pecker tabloid relationship and catch-and-kill dynamics</a></li>
@@ -2183,14 +2272,12 @@
           <li><a href="https://www.thedailybeast.com/trump-goon-howard-lutnick-who-denied-epstein-ties-busted-visiting-island/" target="_blank" rel="noopener">The Daily Beast: Radar launch-era photo/caption context (Epstein at Radar event in 2005, as referenced in later coverage)</a></li>
           <li><a href="https://en.wikipedia.org/wiki/Tabloid_Junkie" target="_blank" rel="noopener">Tabloid Junkie (song): overview of Michael Jackson’s tabloid-critique track</a></li>
           <li><a href="https://content.time.com/time/specials/packages/article/0,28804,1907409_1907413_1907487,00.html" target="_blank" rel="noopener">TIME: Trump statement describing Michael Jackson as a “very good friend”</a></li>
-          <li><a href="https://www.cbsnews.com/news/trump-walked-in-pageant-dressing-rooms-2016/" target="_blank" rel="noopener">CBS News: pageant dressing-room accounts</a></li>
-          <li><a href="https://www.cbsnews.com/news/more-unearthed-footage-trump-comments-women-pageant-audio-2016/" target="_blank" rel="noopener">CBS News: audio and pageant-related comments</a></li>
         </ul>
       </section>
 
       <section class="card" id="e-jean-carroll">
-        <span class="tag">It doesn’t help</span>
-        <h2>It doesn’t help: E. Jean Carroll, and the broader allegations landscape</h2>
+        <span class="tag">Critics argue this is concerning</span>
+        <h2>E. Jean Carroll: a court-substantiated case (sexual abuse + defamation)</h2>
 
         <div class="media">
           <figure>
@@ -2200,9 +2287,9 @@
         </div>
 
         <p>
-          It doesn’t help that a jury found Trump liable in E. Jean Carroll’s civil case (sexual abuse and defamation),
-          and it doesn’t help that there are many other public allegations of sexual misconduct. Trump denies wrongdoing,
-          and supporters argue the allegations are politicized; critics argue the volume and the court outcomes matter for public trust.
+          A jury found Trump liable in E. Jean Carroll’s civil case (sexual abuse and defamation). This card is included because it is often referenced alongside
+          the wider set of public sexual-misconduct allegations against Trump. Trump denies wrongdoing, and supporters argue the allegations are politicized;
+          others argue the volume and court outcomes matter for public trust.
         </p>
 
         <div class="sources-title">Sources</div>
@@ -2228,8 +2315,8 @@
         </div>
 
         <p>
-          The purpose of this compilation is not to declare guilt or innocence, but to lay out reported facts, allegations, and associations that critics argue
-          are relevant to public trust. Some items above are strongly documented in mainstream reporting; others are explicitly labeled unverified or contested.
+          The purpose of this compilation is not to declare guilt or innocence, but to lay out reported facts, allegations, and associations that many readers consider
+          relevant to public trust. Some items above are strongly documented in mainstream reporting; others are explicitly labeled unverified or contested.
         </p>
 
         <p>
@@ -2238,13 +2325,19 @@
         </p>
       </section>
 
+        </div>
+      </div>
     </div>
   </main>
 
   <script>
-    (function(){
+    window.addEventListener('DOMContentLoaded', function(){
       var grid = document.getElementById('caseGrid');
       if(!grid) return;
+
+      var tocNav = document.getElementById('tocNav');
+      var tocMobileNav = document.getElementById('tocMobileNav');
+      var tocMobile = document.getElementById('tocMobile');
 
       var internalHashChange = false;
       var allowHashUpdates = false;
@@ -2254,31 +2347,91 @@
       }
 
       function cleanDisplayTitle(s){
-        var t = String(s || '').trim();
-        t = t.replace(/^It doesn[’']t help\s*:\s*/i, '');
-        return t;
+        return String(s || '').trim();
       }
 
       function professionalizeText(s){
         var t = String(s || '');
         t = t.replace(/\s+/g,' ').trim();
-        t = t.replace(/^It doesn[’']t help that\s+/i, 'Critics argue that ');
-        t = t.replace(/^And it doesn[’']t help that\s+/i, 'Critics also argue that ');
-        t = t.replace(/^It also doesn[’']t help that\s+/i, 'Critics also argue that ');
-        t = t.replace(/\bdoesn[’']t help\b/gi, 'is concerning');
         return t;
       }
 
       function professionalizeHtml(html){
-        var t = String(html || '');
-        t = t.replace(/<h3\s+class="subhead">\s*Why critics say this\s*[“\"]?doesn[’']t help[”\"]?\s*<\/h3>/gi, '<h3 class="subhead">Why critics consider this relevant</h3>');
-        t = t.replace(/<h3\s+class="subhead">\s*Why critics say this\s*[“\"]?is concerning[”\"]?\s*<\/h3>/gi, '<h3 class="subhead">Why critics consider this relevant</h3>');
-        t = t.replace(/It doesn[’']t help that\s+/gi, 'Critics argue that ');
-        t = t.replace(/\bAnd it doesn[’']t help that\s+/gi, 'Critics also argue that ');
-        t = t.replace(/\bIt also doesn[’']t help that\s+/gi, 'Critics also argue that ');
-        t = t.replace(/\bIt doesn[’']t help\b/gi, 'Critics argue this is concerning');
-        t = t.replace(/\bdoesn[’']t help\b/gi, 'is concerning');
-        return t;
+        return String(html || '');
+      }
+
+      function collapseSources(root){
+        if(!root || !root.querySelectorAll) return;
+        var titles = Array.prototype.slice.call(root.querySelectorAll('.sources-title'));
+        titles.forEach(function(t){
+          var label = String(t.textContent || '').trim();
+          if(!label) return;
+          if(!/\bsources\b/i.test(label)) return;
+          var ul = t.nextElementSibling;
+          if(!ul || String(ul.tagName || '').toLowerCase() !== 'ul') return;
+          var details = document.createElement('details');
+          details.className = 'sources';
+          var summary = document.createElement('summary');
+          summary.textContent = label;
+          details.appendChild(summary);
+          details.appendChild(ul);
+          if(t.parentNode) t.parentNode.replaceChild(details, t);
+        });
+      }
+
+      var tocObserved = [];
+
+      function buildToc(entries){
+        function render(nav){
+          if(!nav) return;
+          nav.innerHTML = '';
+          var ul = document.createElement('ul');
+          entries.forEach(function(e){
+            var li = document.createElement('li');
+            var a = document.createElement('a');
+            a.href = '#' + encodeURIComponent(e.id);
+            a.textContent = e.title;
+            a.dataset.tocId = e.id;
+            li.appendChild(a);
+            ul.appendChild(li);
+          });
+          nav.appendChild(ul);
+        }
+        render(tocNav);
+        render(tocMobileNav);
+      }
+
+      function setActiveToc(id){
+        [tocNav, tocMobileNav].forEach(function(nav){
+          if(!nav) return;
+          var links = Array.prototype.slice.call(nav.querySelectorAll('a[data-toc-id]'));
+          links.forEach(function(a){ a.classList.toggle('active', a.dataset.tocId === id); });
+        });
+      }
+
+      function wireTocClicks(){
+        [tocNav, tocMobileNav].forEach(function(nav){
+          if(!nav) return;
+          nav.addEventListener('click', function(ev){
+            var a = ev.target && ev.target.closest ? ev.target.closest('a') : null;
+            if(!a) return;
+            if(tocMobile && tocMobile.open) tocMobile.open = false;
+          });
+        });
+      }
+
+      function setupScrollSpy(){
+        if(!('IntersectionObserver' in window)) return;
+        var targets = (tocObserved || []).map(function(id){ return document.getElementById(id); }).filter(Boolean);
+        if(!targets.length) return;
+        var obs = new IntersectionObserver(function(entries){
+          entries.forEach(function(e){
+            if(!e.isIntersecting) return;
+            var id = e.target && e.target.id;
+            if(id) setActiveToc(id);
+          });
+        }, { root: null, threshold: 0.18, rootMargin: '-35% 0px -55% 0px' });
+        targets.forEach(function(el){ obs.observe(el); });
       }
 
       function shorten(s, max){
@@ -2331,7 +2484,15 @@
 
         var h = document.createElement('h2');
         h.className = 'case-title';
-        h.textContent = title;
+        h.appendChild(document.createTextNode(title));
+        if(id){
+          var anchor = document.createElement('a');
+          anchor.className = 'anchor';
+          anchor.href = '#' + encodeURIComponent(id);
+          anchor.textContent = '#';
+          anchor.setAttribute('aria-label', 'Link to this section');
+          h.appendChild(anchor);
+        }
 
         var mediaWrap = document.createElement('div');
         mediaWrap.className = 'media';
@@ -2348,14 +2509,10 @@
         details.className = 'case-details';
         details.innerHTML = '<summary>Details</summary><div class="case-body"></div>';
 
-        details.open = true;
-        if(lede && lede.dataset && lede.dataset.full){
-          lede.textContent = lede.dataset.full;
-        }
-
         var body = details.querySelector('.case-body');
         if(body){
           body.innerHTML = professionalizeHtml(clone.innerHTML);
+          collapseSources(body);
         }
 
         details.addEventListener('toggle', function(){
@@ -2367,6 +2524,7 @@
             if(allowHashUpdates){
               internalHashChange = true;
               location.hash = id;
+              setActiveToc(id);
             }
           }else{
             var hashId = decodeURIComponent(String(location.hash || '').replace(/^#/,''));
@@ -2426,12 +2584,28 @@
           return (orderMap[aid] || 0) - (orderMap[bid] || 0);
         });
 
+        var tocEntries = [
+          { id: 'top', title: 'Top' }
+        ];
+        sections.forEach(function(s){
+          var id = s.getAttribute('id') || '';
+          var h2 = s.querySelector('h2');
+          var title = h2 ? cleanDisplayTitle(h2.textContent || '') : id;
+          tocEntries.push({ id: id, title: title });
+        });
+        buildToc(tocEntries);
+
+        tocObserved = tocEntries.map(function(e){ return e.id; });
+
         var frag = document.createDocumentFragment();
         sections.forEach(function(s){
           frag.appendChild(buildCaseFromSection(s));
         });
         grid.innerHTML = '';
         grid.appendChild(frag);
+
+        wireTocClicks();
+        setupScrollSpy();
       }
 
       function syncFromHash(){
@@ -2442,6 +2616,7 @@
         var details = el.querySelector('details.case-details');
         if(details && !details.open) details.open = true;
         try{ el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }catch(_e){ el.scrollIntoView(true); }
+        setActiveToc(id);
       }
 
       window.addEventListener('hashchange', function(){
@@ -2468,7 +2643,7 @@
       wireImageFallback(document);
       syncFromHash();
       setTimeout(function(){ allowHashUpdates = true; }, 0);
-    })();
+    });
   </script>
 
   <footer>
@@ -2496,6 +2671,7 @@
     <p class="footer-services">
       For website/app design, software engineering, and rapid prototypes: contact <a href="mailto:mechaloctopus@gmail.com">mechaloctopus@gmail.com</a>.
     </p>
+
   </footer>
 </body>
 </html>
